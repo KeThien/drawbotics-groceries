@@ -6,7 +6,7 @@
       v-for="(item, index) in itemsActive"
       :key="index"
       :item="item"
-      @checking="checking(item.id)"
+      @toggleItem="toggleItem(item)"
     />
     <v-flex my-4>
       <v-expansion-panel flat expand v-model="completedPanel">
@@ -18,7 +18,7 @@
             v-for="(item, index) in itemsCompleted"
             :key="index"
             :item="item"
-            @checking="checking(item.id)"
+            @toggleItem="toggleItem(item)"
           />
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -39,20 +39,32 @@ export default {
   },
   data() {
     return {
-      completedPanel: [true]
+      completedPanel: [true],
+      itemsActive: [],
+      itemsCompleted: []
     };
   },
   computed: {
     items() {
       return this.$store.state.shoppingList.items;
-    },
-    ...mapGetters(["itemsActive", "itemsCompleted"])
+    }
   },
-  mounted() {},
+  mounted() {
+    this.itemsActive = this.items.filter(item => item.completed === false);
+    this.itemsCompleted = this.items.filter(item => item.completed === true);
+  },
   methods: {
-    checking(id) {
-      console.log(id);
-      this.$store.commit("checking", id);
+    toggleItem(item) {
+      if (!item.completed) {
+        // push item to itemsCompleted
+        this.itemsCompleted.unshift(item);
+        // item to remove from itemsActive
+        this.itemsActive = this.itemsActive.filter(e => e !== item);
+      } else {
+        this.itemsActive.push(item);
+        this.itemsCompleted = this.itemsCompleted.filter(e => e !== item);
+      }
+      this.$store.commit("checking", item.id);
     }
   }
 };

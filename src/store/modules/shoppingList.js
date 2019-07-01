@@ -22,13 +22,8 @@ const actions = {}
 // mutations
 const mutations = {
   checking(state, id) {
-    let completed = state.items.find(item => item.id == id).completed
-    if (completed == false) {
-      state.items.find(item => item.id == id).completed = true
-    } else {
-      state.items.find(item => item.id == id).completed = false
-    }
-    console.log('item completed:', completed)
+    let isCompleted = state.items.find(item => item.id == id).completed
+    state.items.find(item => item.id === id).completed = !isCompleted
   }
 }
 export default {

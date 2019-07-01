@@ -1,6 +1,6 @@
 <template>
   <v-flex my-1 xs12>
-    <v-card flat>
+    <v-card flat @click="$emit('toggleItem')">
       <v-layout row fill-height align-center pa-2>
         <v-flex xs10 pl-2>
           <h4>{{ item.name }}</h4>
@@ -11,7 +11,7 @@
           </v-btn>
         </v-flex>
         <v-flex>
-          <v-checkbox v-model="isChecked" hide-details color="pink" @change="$emit('checking')"></v-checkbox>
+          <v-checkbox disabled v-model="isChecked" hide-details color="pink"></v-checkbox>
         </v-flex>
       </v-layout>
     </v-card>
@@ -28,6 +28,9 @@ export default {
   },
   props: {
     item: Object
+  },
+  mounted() {
+    // this.isChecked = this.item.completed;
   }
 };
 </script>
@@ -37,5 +40,8 @@ export default {
 .v-input--selection-controls {
   margin-top: 0;
   padding-top: 0;
+}
+.v-card {
+  cursor: pointer;
 }
 </style>
