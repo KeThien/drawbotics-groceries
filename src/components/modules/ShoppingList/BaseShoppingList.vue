@@ -4,6 +4,17 @@
     <BaseShoppingListItem />
     <BaseShoppingListItem />
     <BaseShoppingListItem />
+    <v-flex my-4>
+      <v-expansion-panel flat>
+        <v-expansion-panel-content>
+          <template v-slot:header>
+            <div>Completed</div>
+          </template>
+          <BaseShoppingListItem />
+          <BaseShoppingListItem />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -20,5 +31,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.v-expansion-panel {
+  box-shadow: none;
+  .v-expansion-panel__container {
+    background-color: transparent !important;
+  }
+}
 </style>
+
