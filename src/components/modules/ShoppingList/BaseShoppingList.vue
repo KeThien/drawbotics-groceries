@@ -1,17 +1,16 @@
 <template>
   <v-layout column my-4>
     <AddShoppingItem />
-    <BaseShoppingListItem />
-    <BaseShoppingListItem />
-    <BaseShoppingListItem />
+
+    <BaseShoppingListItem v-for="(item, index) in items" :key="index" :item="item" />
     <v-flex my-4>
       <v-expansion-panel flat>
         <v-expansion-panel-content>
           <template v-slot:header>
             <div>Completed</div>
           </template>
-          <BaseShoppingListItem />
-          <BaseShoppingListItem />
+          <BaseShoppingListItem title="test" />
+          <BaseShoppingListItem title="test" />
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-flex>
@@ -27,7 +26,13 @@ export default {
   components: {
     BaseShoppingListItem,
     AddShoppingItem
-  }
+  },
+  computed: {
+    items() {
+      return this.$store.state.shoppingList.items;
+    }
+  },
+  mounted() {}
 };
 </script>
 

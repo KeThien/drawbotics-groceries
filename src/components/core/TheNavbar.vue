@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-nav :active.sync="bottomNav" :value="true" absolute color="transparent">
+  <v-bottom-nav :value="true" absolute color="transparent">
     <v-btn color="teal" flat value="list" to="/">
       <span>List</span>
       <v-icon>list</v-icon>
