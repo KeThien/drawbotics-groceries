@@ -1,14 +1,9 @@
 <template>
-  <v-container fluid>
-    <v-layout column>
-      <v-flex>
-        <p>This is the Shopping List component</p>
-      </v-flex>
-      <BaseShoppingListItem />
-      <BaseShoppingListItem />
-      <BaseShoppingListItem />
-    </v-layout>
-  </v-container>
+  <v-layout column>
+    <BaseShoppingListItem />
+    <BaseShoppingListItem />
+    <BaseShoppingListItem />
+  </v-layout>
 </template>
 
 <script>
