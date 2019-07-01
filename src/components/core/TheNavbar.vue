@@ -14,6 +14,10 @@
       <span>Recipes</span>
       <v-icon>local_dining</v-icon>
     </v-btn>
+    <div id="nav">
+      <router-link to="/">Home</router-link>|
+      <router-link to="/about">About</router-link>
+    </div>
   </v-bottom-nav>
 </template>
 
