@@ -1,23 +1,19 @@
 <template>
   <v-bottom-nav :active.sync="bottomNav" :value="true" absolute color="transparent">
-    <v-btn color="teal" flat value="list">
+    <v-btn color="teal" flat value="list" to="/">
       <span>List</span>
       <v-icon>list</v-icon>
     </v-btn>
 
-    <v-btn color="teal" flat value="stats">
+    <v-btn color="teal" flat value="stats" to="/stats">
       <span>Stats</span>
       <v-icon>pie_chart</v-icon>
     </v-btn>
 
-    <v-btn color="teal" flat value="Recipes">
+    <v-btn color="teal" flat value="Recipes" to="/recipes">
       <span>Recipes</span>
       <v-icon>local_dining</v-icon>
     </v-btn>
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
-    </div>
   </v-bottom-nav>
 </template>
 
