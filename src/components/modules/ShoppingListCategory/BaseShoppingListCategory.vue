@@ -1,5 +1,5 @@
 <template>
-  <v-layout align-center>
+  <v-layout align-center my-3>
     <v-flex xs9 offset-xs1>
       <v-select :items="categories" label="Category"></v-select>
     </v-flex>

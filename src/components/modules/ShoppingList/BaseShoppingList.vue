@@ -1,5 +1,6 @@
 <template>
-  <v-layout column>
+  <v-layout column my-4>
+    <AddShoppingItem />
     <BaseShoppingListItem />
     <BaseShoppingListItem />
     <BaseShoppingListItem />
@@ -8,11 +9,13 @@
 
 <script>
 import BaseShoppingListItem from "./BaseShoppingListItem";
+import AddShoppingItem from "./AddShoppingItem";
 
 export default {
   name: "BaseShoppingList",
   components: {
-    BaseShoppingListItem
+    BaseShoppingListItem,
+    AddShoppingItem
   }
 };
 </script>

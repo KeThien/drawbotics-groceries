@@ -2,10 +2,15 @@
   <v-flex my-1 xs12>
     <v-card flat>
       <v-layout row fill-height align-center pa-2>
-        <v-flex xs11>
+        <v-flex xs10 pl-2>
           <h4>This is a Shopping item</h4>
         </v-flex>
-        <v-flex xs1>
+        <v-flex>
+          <v-btn flat icon color="grey">
+            <v-icon>create</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex>
           <v-checkbox hide-details></v-checkbox>
         </v-flex>
       </v-layout>
