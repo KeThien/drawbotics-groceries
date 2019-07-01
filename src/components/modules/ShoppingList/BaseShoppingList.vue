@@ -9,11 +9,9 @@
       @toggleItem="toggleItem(item)"
     />
     <v-flex my-4>
-      <v-expansion-panel flat expand v-model="completedPanel">
+      <v-expansion-panel mandatory expand v-model="completedPanel">
         <v-expansion-panel-content>
-          <template v-slot:header>
-            <div>Completed</div>
-          </template>
+          <div slot="header">Completed</div>
           <BaseShoppingListItem
             v-for="(item, index) in itemsCompleted"
             :key="index"
@@ -29,7 +27,6 @@
 <script>
 import BaseShoppingListItem from "./BaseShoppingListItem";
 import AddShoppingItem from "./AddShoppingItem";
-import { mapGetters } from "vuex";
 
 export default {
   name: "BaseShoppingList",
@@ -74,7 +71,7 @@ export default {
 .v-expansion-panel {
   box-shadow: none;
   .v-expansion-panel__container {
-    background-color: transparent !important;
+    background-color: #f5f5f5 !important;
   }
 }
 </style>

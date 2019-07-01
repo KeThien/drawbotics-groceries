@@ -3,7 +3,7 @@
     <v-card flat @click="$emit('toggleItem')">
       <v-layout row fill-height align-center pa-2>
         <v-flex xs10 pl-2>
-          <h4>{{ item.name }}</h4>
+          <h3>{{ item.name }}</h3>
         </v-flex>
         <v-flex>
           <v-btn flat icon color="grey">
@@ -11,7 +11,7 @@
           </v-btn>
         </v-flex>
         <v-flex>
-          <v-checkbox disabled v-model="isChecked" hide-details color="pink"></v-checkbox>
+          <v-checkbox v-model="isChecked" hide-details color="pink"></v-checkbox>
         </v-flex>
       </v-layout>
     </v-card>
@@ -30,7 +30,7 @@ export default {
     item: Object
   },
   mounted() {
-    // this.isChecked = this.item.completed;
+    this.isChecked = this.item.completed;
   }
 };
 </script>
