@@ -2,26 +2,25 @@
   <v-app>
     <TheHeading />
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+    <v-content></v-content>
+    <TheNavbar />
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import TheHeading from './components/core/TheHeading'
+import TheHeading from "./components/core/TheHeading";
+import TheNavbar from "./components/core/TheNavbar";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld,
-    TheHeading
+    TheHeading,
+    TheNavbar
   },
-  data () {
+  data() {
     return {
       //
-    }
+    };
   }
-}
+};
 </script>
