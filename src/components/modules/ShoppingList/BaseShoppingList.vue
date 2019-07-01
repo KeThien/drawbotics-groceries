@@ -9,8 +9,6 @@
           <template v-slot:header>
             <div>Completed</div>
           </template>
-          <BaseShoppingListItem title="test" />
-          <BaseShoppingListItem title="test" />
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-flex>
