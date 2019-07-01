@@ -11,7 +11,7 @@
           </v-btn>
         </v-flex>
         <v-flex>
-          <v-checkbox hide-details color="pink"></v-checkbox>
+          <v-checkbox v-model="isChecked" hide-details color="pink" @change="$emit('checking')"></v-checkbox>
         </v-flex>
       </v-layout>
     </v-card>
@@ -21,6 +21,11 @@
 <script>
 export default {
   name: "ShoppingListItem",
+  data() {
+    return {
+      isChecked: null
+    };
+  },
   props: {
     item: Object
   }

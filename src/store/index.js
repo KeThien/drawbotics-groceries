@@ -8,7 +8,7 @@ export default new Vuex.Store({
   modules: {
     shoppingList
   },
-  state: { count: 0 },
+  state: {},
   mutations: {},
   actions: {}
 })
