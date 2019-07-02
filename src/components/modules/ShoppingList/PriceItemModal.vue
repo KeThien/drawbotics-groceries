@@ -5,8 +5,14 @@
         <h3>{{item.name}}</h3>
       </v-card-title>
       <v-card-text>
-        <div>Price</div>
-        <div>Who</div>
+        <v-text-field
+          v-model="itemPrice"
+          label="Price"
+          clearable
+          prefix="€"
+          :rules="[rules.number]"
+        ></v-text-field>
+        <v-select :items="itemCategory" label="Who"></v-select>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -26,8 +32,22 @@ export default {
   },
   data() {
     return {
-      // dialog: false
+      itemPrice: null,
+      itemCategory: ["foo", "bar"],
+      rules: {
+        number: value => {
+          if (value == null || value == "") {
+            return true;
+          } else {
+            const pattern = /^[0-9]+(\.[0-9]{0,2})?$/;
+            return pattern.test(value) || "Must be a number.";
+          }
+        }
+      }
     };
+  },
+  mounted() {
+    this.itemPrice = this.item.price;
   },
   methods: {
     handleBuy(value) {

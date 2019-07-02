@@ -24,6 +24,9 @@ const mutations = {
   checking(state, id) {
     let isCompleted = state.items.find(item => item.id == id).completed
     state.items.find(item => item.id === id).completed = !isCompleted
+  },
+  editPrice(state, id, price) {
+    state.items.find(item => item.id === id).price = price
   }
 }
 export default {
