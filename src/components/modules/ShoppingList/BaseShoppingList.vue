@@ -1,6 +1,6 @@
 <template>
   <v-layout column my-4>
-    <AddShoppingItem />
+    <AddShoppingListItem />
 
     <BaseShoppingListItem
       v-for="(item, index) in itemsActive"
@@ -26,13 +26,13 @@
 
 <script>
 import BaseShoppingListItem from "./BaseShoppingListItem";
-import AddShoppingItem from "./AddShoppingItem";
+import AddShoppingListItem from "./AddShoppingListItem";
 
 export default {
   name: "BaseShoppingList",
   components: {
     BaseShoppingListItem,
-    AddShoppingItem
+    AddShoppingListItem
   },
   data() {
     return {

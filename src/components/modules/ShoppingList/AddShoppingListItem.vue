@@ -1,6 +1,6 @@
 <template>
   <v-flex my-1 xs12>
-    <v-btn block flat class="dashed-border-btn" @click="addItem">
+    <v-btn block flat class="dashed-border-btn" @click="handleAddItem">
       <span>Add an item</span>
       <v-icon small>add</v-icon>
     </v-btn>
@@ -9,9 +9,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      pouet: "pouet couin"
+    };
+  },
+  mounted() {
+    console.log(this.$store.state);
+  },
   methods: {
-    addItem: () => {
-      console.log("addItem methods");
+    handleAddItem() {
+      console.log(this.$store.state);
     }
   }
 };
@@ -24,4 +32,3 @@ export default {
   cursor: pointer;
 }
 </style>
-

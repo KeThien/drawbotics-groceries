@@ -59,7 +59,8 @@ const getters = {
   }
 }
 // actions
-const actions = {}
+// const actions = {}
+
 // mutations
 const mutations = {
   checking(state, id) {
@@ -70,6 +71,9 @@ const mutations = {
   editPrice(state, id, price) {
     console.log('price edited')
     state.items.find(item => item.id === id).price = price
+  },
+  addItem() {
+    console.log('item added')
   }
 }
 export default {

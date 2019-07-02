@@ -52,7 +52,7 @@ export default {
     this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
   },
   methods: {
-    handleCheck(value) {
+    handleCheck() {
       this.dialog = false;
       this.$emit("toggleCheck");
     },
