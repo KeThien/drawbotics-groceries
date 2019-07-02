@@ -2,16 +2,11 @@
   <v-flex my-1 xs12>
     <v-card flat @click="$emit('toggleItem')">
       <v-layout row fill-height align-center pa-2>
-        <v-flex xs10 pl-2>
-          <h3>{{ item.name }}</h3>
+        <v-flex xs11 pl-2>
+          <h3 class="item-name" :class="{completed :isChecked}">{{ item.name }}</h3>
         </v-flex>
-        <v-flex>
-          <v-btn flat icon color="grey">
-            <v-icon>create</v-icon>
-          </v-btn>
-        </v-flex>
-        <v-flex>
-          <v-checkbox v-model="isChecked" hide-details color="pink"></v-checkbox>
+        <v-flex xs1>
+          <v-checkbox v-model="isChecked" hide-details readonly color="pink"></v-checkbox>
         </v-flex>
       </v-layout>
     </v-card>
@@ -43,5 +38,23 @@ export default {
 }
 .v-card {
   cursor: pointer;
+}
+h3.item-name {
+  display: inline;
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 50%;
+    content: "";
+    display: none;
+    height: 2px;
+    width: 100%;
+    background-color: black;
+  }
+  &.completed {
+    &::before {
+      display: block;
+    }
+  }
 }
 </style>

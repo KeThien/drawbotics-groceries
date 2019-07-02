@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     toggleItem(item) {
+      console.log(item);
       if (!item.completed) {
         // push item to itemsCompleted
         this.itemsCompleted.unshift(item);
