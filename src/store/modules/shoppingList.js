@@ -63,10 +63,12 @@ const actions = {}
 // mutations
 const mutations = {
   checking(state, id) {
+    console.log('item checked')
     let isCompleted = state.items.find(item => item.id == id).completed
     state.items.find(item => item.id === id).completed = !isCompleted
   },
   editPrice(state, id, price) {
+    console.log('price edited')
     state.items.find(item => item.id === id).price = price
   }
 }

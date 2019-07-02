@@ -18,7 +18,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="teal darken-1" flat @click="dialog = false">Cancel</v-btn>
-        <v-btn color="teal darken-1" flat @click="dialog = false">Edit</v-btn>
+        <v-btn color="teal darken-1" flat @click="handleEdit">Edit</v-btn>
         <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
       </v-card-actions>
     </v-card>
@@ -56,7 +56,11 @@ export default {
       this.dialog = false;
       this.$emit("toggleCheck");
     },
-    handleEdit() {}
+    handleEdit() {
+      // submit price and user to database
+      this.dialog = false;
+      this.$store.commit("editPrice", this.item.id, this.itemPrice);
+    }
   },
   computed: {
     dialog: {
