@@ -1,6 +1,6 @@
 <template>
   <v-flex my-1 xs12>
-    <v-card flat @click="handlerClick">
+    <v-card flat @click="openModal">
       <v-layout row fill-height align-center pa-2>
         <v-flex xs11 pl-2>
           <h3 class="item-name" :class="{completed :isChecked}">{{ item.name }}</h3>
@@ -10,7 +10,12 @@
         </v-flex>
       </v-layout>
     </v-card>
-    <PriceItemModal :open="isOpenModal" :item="item" @closeModal="closeModal($event)" />
+    <PriceItemModal
+      :open="isOpenModal"
+      :item="item"
+      @closeModal="closeModal($event)"
+      @toggleCheck="toggleCheck"
+    />
   </v-flex>
 </template>
 
@@ -37,14 +42,11 @@ export default {
   methods: {
     openModal() {
       this.isOpenModal = true;
-      console.log("OpenModal", this.isOpenModal);
     },
     closeModal() {
       this.isOpenModal = false;
-      console.log("OpenModal", this.isOpenModal);
     },
-    handlerClick() {
-      this.openModal();
+    toggleCheck() {
       this.$emit("toggleItem");
     }
   }

@@ -30,7 +30,10 @@ export default {
     };
   },
   methods: {
-    handleBuy(value) {}
+    handleBuy(value) {
+      this.dialog = false;
+      this.$emit("toggleCheck");
+    }
   },
   computed: {
     dialog: {

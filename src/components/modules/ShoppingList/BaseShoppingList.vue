@@ -52,16 +52,16 @@ export default {
   },
   methods: {
     toggleItem(item) {
-      // if (!item.completed) {
-      //   // push item to itemsCompleted
-      //   this.itemsCompleted.unshift(item);
-      //   // item to remove from itemsActive
-      //   this.itemsActive = this.itemsActive.filter(e => e !== item);
-      // } else {
-      //   this.itemsActive.push(item);
-      //   this.itemsCompleted = this.itemsCompleted.filter(e => e !== item);
-      // }
-      // this.$store.commit("checking", item.id);
+      if (!item.completed) {
+        // push item to itemsCompleted
+        this.itemsCompleted.unshift(item);
+        // item to remove from itemsActive
+        this.itemsActive = this.itemsActive.filter(e => e !== item);
+      } else {
+        this.itemsActive.push(item);
+        this.itemsCompleted = this.itemsCompleted.filter(e => e !== item);
+      }
+      this.$store.commit("checking", item.id);
     }
   }
 };
