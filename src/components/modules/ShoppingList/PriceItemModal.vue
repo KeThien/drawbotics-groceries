@@ -3,6 +3,7 @@
     <v-card>
       <v-card-title>
         <h3>{{item.name}}</h3>
+        <p>{{item.category}}</p>
       </v-card-title>
       <v-card-text>
         <v-text-field
@@ -12,13 +13,13 @@
           prefix="€"
           :rules="[rules.number]"
         ></v-text-field>
-        <v-select :items="itemCategory" label="Who"></v-select>
+        <v-autocomplete :items="itemUser" label="Who"></v-autocomplete>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="teal darken-1" flat @click="dialog = false">Cancel</v-btn>
         <v-btn color="teal darken-1" flat @click="dialog = false">Edit</v-btn>
-        <v-btn color="teal darken-1" small outline @click="handleBuy">{{isChecked}}</v-btn>
+        <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -33,7 +34,7 @@ export default {
   data() {
     return {
       itemPrice: null,
-      itemCategory: ["foo", "bar"],
+      itemUser: [],
       rules: {
         number: value => {
           if (value == null || value == "") {
@@ -48,12 +49,14 @@ export default {
   },
   mounted() {
     this.itemPrice = this.item.price;
+    this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
   },
   methods: {
-    handleBuy(value) {
+    handleCheck(value) {
       this.dialog = false;
       this.$emit("toggleCheck");
-    }
+    },
+    handleEdit() {}
   },
   computed: {
     dialog: {

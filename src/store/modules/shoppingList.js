@@ -1,12 +1,53 @@
 // initial state
 const state = {
   items: [
-    { id: 0, name: 'Pamplemousse', completed: false, price: null, user: null },
-    { id: 1, name: 'Banana', completed: false, price: null, user: null },
-    { id: 2, name: 'Fraise', completed: false, price: null, user: null },
-    { id: 3, name: 'Kiwi', completed: false, price: null, user: null },
-    { id: 4, name: 'Courgette', completed: true, price: 3.5, user: 'Roberto' }
-  ]
+    {
+      id: 0,
+      name: 'Pamplemousse',
+      completed: false,
+      price: null,
+      user: null,
+      category: null
+    },
+    {
+      id: 1,
+      name: 'Banana',
+      completed: false,
+      price: null,
+      user: null,
+      category: null
+    },
+    {
+      id: 2,
+      name: 'Fraise',
+      completed: false,
+      price: null,
+      user: null,
+      category: null
+    },
+    {
+      id: 3,
+      name: 'Kiwi',
+      completed: false,
+      price: null,
+      user: null,
+      category: null
+    },
+    {
+      id: 4,
+      name: 'Courgette',
+      completed: true,
+      price: 3.5,
+      user: null,
+      category: null
+    }
+  ],
+  categories: [
+    { id: 0, name: 'Fruit' },
+    { id: 1, name: 'Legumes' },
+    { id: 2, name: 'Champignons' }
+  ],
+  users: [{ id: 0, name: 'Mario' }, { id: 1, name: 'Yoshi' }]
 }
 // getters
 const getters = {
