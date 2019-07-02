@@ -4,6 +4,21 @@
       <span>Add an item</span>
       <v-icon small>add</v-icon>
     </v-btn>
+    <v-dialog v-model="dialog" persistent full-width>
+      <v-card>
+        <v-card-title>
+          <h3>Add an item</h3>
+        </v-card-title>
+        <v-card-text>
+          <v-text-field v-model="newName" label="Name" clearable></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="teal darken-1" flat @click="dialog = false">Cancel</v-btn>
+          <v-btn color="teal darken-1" flat @click="handleSubmitItem">Add</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-flex>
 </template>
 
@@ -11,15 +26,32 @@
 export default {
   data() {
     return {
-      pouet: "pouet couin"
+      dialog: false,
+      newName: null,
+      newItem: {
+        id: null,
+        name: null,
+        completed: false,
+        price: Number,
+        user: null,
+        category: null
+      }
     };
   },
-  mounted() {
-    console.log(this.$store.state);
-  },
+  mounted() {},
   methods: {
     handleAddItem() {
-      console.log(this.$store.state);
+      this.dialog = true;
+    },
+    handleSubmitItem() {
+      this.dialog = false;
+      console.log(this.newItem.name);
+      this.newItem.name = this.newName;
+      const itemToSubmit = this.newItem;
+      console.log(itemToSubmit);
+
+      this.$store.commit("addItem", this.itemToSubmit);
+      this.newName = null;
     }
   }
 };

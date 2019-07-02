@@ -72,7 +72,10 @@ const mutations = {
     console.log('price edited')
     state.items.find(item => item.id === id).price = price
   },
-  addItem() {
+  addItem(state, newItem) {
+    console.log(newItem)
+    const newID = state.items.length
+
     console.log('item added')
   }
 }
