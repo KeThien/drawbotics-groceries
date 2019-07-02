@@ -1,6 +1,6 @@
 <template>
   <v-flex my-1 xs12>
-    <v-card flat @click="$emit('toggleItem')">
+    <v-card flat @click="handlerClick">
       <v-layout row fill-height align-center pa-2>
         <v-flex xs11 pl-2>
           <h3 class="item-name" :class="{completed :isChecked}">{{ item.name }}</h3>
@@ -10,15 +10,22 @@
         </v-flex>
       </v-layout>
     </v-card>
+    <PriceItemModal :open="isOpenModal" :item="item" @closeModal="closeModal($event)" />
   </v-flex>
 </template>
 
 <script>
+import PriceItemModal from "./PriceItemModal";
+
 export default {
   name: "ShoppingListItem",
+  components: {
+    PriceItemModal
+  },
   data() {
     return {
-      isChecked: null
+      isChecked: null,
+      isOpenModal: false
     };
   },
   props: {
@@ -26,6 +33,20 @@ export default {
   },
   mounted() {
     this.isChecked = this.item.completed;
+  },
+  methods: {
+    openModal() {
+      this.isOpenModal = true;
+      console.log("OpenModal", this.isOpenModal);
+    },
+    closeModal() {
+      this.isOpenModal = false;
+      console.log("OpenModal", this.isOpenModal);
+    },
+    handlerClick() {
+      this.openModal();
+      this.$emit("toggleItem");
+    }
   }
 };
 </script>

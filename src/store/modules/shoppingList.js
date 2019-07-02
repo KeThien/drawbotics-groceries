@@ -1,11 +1,11 @@
 // initial state
 const state = {
   items: [
-    { id: 0, name: 'Pamplemousse', completed: false },
-    { id: 1, name: 'Banana', completed: false },
-    { id: 2, name: 'Fraise', completed: false },
-    { id: 3, name: 'Kiwi', completed: false },
-    { id: 4, name: 'Courgette', completed: true }
+    { id: 0, name: 'Pamplemousse', completed: false, price: null, user: null },
+    { id: 1, name: 'Banana', completed: false, price: null, user: null },
+    { id: 2, name: 'Fraise', completed: false, price: null, user: null },
+    { id: 3, name: 'Kiwi', completed: false, price: null, user: null },
+    { id: 4, name: 'Courgette', completed: true, price: 3.5, user: 'Roberto' }
   ]
 }
 // getters
