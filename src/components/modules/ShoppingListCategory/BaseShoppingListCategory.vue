@@ -1,7 +1,14 @@
 <template>
   <v-layout align-center my-3>
     <v-flex xs9 offset-xs1>
-      <v-select :items="categories" label="Category" color="pink"></v-select>
+      <v-select
+        v-model="selectedCat"
+        :items="categories"
+        label="Category"
+        color="pink"
+        no-data-text="no category"
+        clearable
+      ></v-select>
     </v-flex>
     <v-flex xs1>
       <v-btn flat icon color="pink">
@@ -15,9 +22,19 @@
 export default {
   data() {
     return {
-      categories: ["Foo", "Bar", "Fizz", "Buzz"]
+      selectedCat: null
     };
-  }
+  },
+  computed: {
+    categories() {
+      console.log(this.$store.state.shoppingList.categories);
+      let categoryListName = this.$store.state.shoppingList.categories.map(
+        category => category.name
+      );
+      return categoryListName;
+    }
+  },
+  mounted() {}
 };
 </script>
 

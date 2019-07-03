@@ -43,7 +43,7 @@ const state = {
     }
   ],
   categories: [
-    { id: 0, name: 'Fruit' },
+    { id: 0, name: 'Fruits' },
     { id: 1, name: 'Legumes' },
     { id: 2, name: 'Champignons' }
   ],
