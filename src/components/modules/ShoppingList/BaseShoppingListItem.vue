@@ -15,6 +15,7 @@
       :item="item"
       @closeModal="closeModal($event)"
       @toggleCheck="toggleCheck"
+      @clickDelete="clickDelete"
     />
   </v-flex>
 </template>
@@ -48,6 +49,9 @@ export default {
     },
     toggleCheck() {
       this.$emit("toggleItem");
+    },
+    clickDelete() {
+      this.$emit("clickDelete");
     }
   }
 };

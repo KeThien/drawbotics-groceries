@@ -17,16 +17,19 @@
         <v-autocomplete :items="itemUser" label="Who"></v-autocomplete>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="teal darken-1" flat @click="dialog = false">Cancel</v-btn>
-        <v-btn color="teal darken-1" flat @click="handleEdit">Edit</v-btn>
-        <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
+        <v-layout row justify-space-around align-center wrap>
+          <v-btn color="red darken-1" flat @click="handleDelete">Delete</v-btn>
+          <v-btn color="grey darken-1" flat @click="dialog = false">Cancel</v-btn>
+          <v-btn color="teal darken-1" flat @click="handleEdit">Edit</v-btn>
+          <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
+        </v-layout>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import { log } from "util";
 export default {
   props: {
     item: Object,
@@ -59,8 +62,15 @@ export default {
     },
     handleEdit() {
       // submit price and user to database
+      console.log("edited");
+
       this.dialog = false;
       this.$store.commit("editPrice", this.item.id, this.itemPrice);
+    },
+    handleDelete() {
+      this.dialog = false;
+      this.$store.commit("deleteItem", this.item.id);
+      this.$emit("clickDelete");
     }
   },
   computed: {

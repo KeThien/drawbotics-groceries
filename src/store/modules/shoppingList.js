@@ -75,7 +75,7 @@ const mutations = {
   addItem(state, newName) {
     console.log(newName)
     let newItem = {
-      id: state.items.length,
+      id: state.items[state.items.length - 1].id + 1,
       name: newName,
       completed: false,
       price: null,
@@ -84,6 +84,12 @@ const mutations = {
     }
     state.items.push(newItem)
     console.log('item added')
+  },
+  deleteItem(state, id) {
+    console.log('item deleted')
+    let newArray = state.items.filter(item => item.id !== id)
+    state.items = newArray
+    console.log(state.items)
   }
 }
 export default {

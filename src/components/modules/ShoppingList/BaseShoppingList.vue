@@ -7,6 +7,7 @@
         :key="index"
         :item="item"
         @toggleItem="toggleItem(item)"
+        @clickDelete="handleShoppingListChange"
       />
       <v-flex my-4>
         <v-expansion-panel mandatory expand v-model="completedPanel">
@@ -17,6 +18,7 @@
               :key="index"
               :item="item"
               @toggleItem="toggleItem(item)"
+              @clickDelete="handleShoppingListChange"
             />
           </v-expansion-panel-content>
         </v-expansion-panel>
