@@ -1,6 +1,6 @@
 <template>
   <v-layout column my-4>
-    <AddShoppingListItem />
+    <AddShoppingListItem @shoppingListChange="handleShoppingListChange" />
 
     <BaseShoppingListItem
       v-for="(item, index) in itemsActive"
@@ -46,9 +46,11 @@ export default {
       return this.$store.state.shoppingList.items;
     }
   },
-  mounted() {
-    this.itemsActive = this.items.filter(item => item.completed === false);
-    this.itemsCompleted = this.items.filter(item => item.completed === true);
+  created() {
+    // this.itemsActive = this.items.filter(item => item.completed === false);
+    // this.itemsCompleted = this.items.filter(item => item.completed === true);
+    this.itemsActive = this.$store.getters.itemsActive;
+    this.itemsCompleted = this.$store.getters.itemsCompleted;
   },
   methods: {
     toggleItem(item) {
@@ -62,6 +64,10 @@ export default {
         this.itemsCompleted = this.itemsCompleted.filter(e => e !== item);
       }
       this.$store.commit("checking", item.id);
+    },
+    handleShoppingListChange() {
+      this.itemsActive = this.$store.getters.itemsActive;
+      this.itemsCompleted = this.$store.getters.itemsCompleted;
     }
   }
 };

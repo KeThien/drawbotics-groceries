@@ -27,15 +27,15 @@ export default {
   data() {
     return {
       dialog: false,
-      newName: null,
-      newItem: {
-        id: null,
-        name: null,
-        completed: false,
-        price: Number,
-        user: null,
-        category: null
-      }
+      newName: null
+      // newItem: {
+      //   id: null,
+      //   name: null,
+      //   completed: false,
+      //   price: null,
+      //   user: null,
+      //   category: null
+      // }
     };
   },
   mounted() {},
@@ -45,13 +45,9 @@ export default {
     },
     handleSubmitItem() {
       this.dialog = false;
-      console.log(this.newItem.name);
-      this.newItem.name = this.newName;
-      const itemToSubmit = this.newItem;
-      console.log(itemToSubmit);
-
-      this.$store.commit("addItem", this.itemToSubmit);
+      this.$store.commit("addItem", this.newName);
       this.newName = null;
+      this.$emit("shoppingListChange");
     }
   }
 };

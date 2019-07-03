@@ -55,7 +55,7 @@ const getters = {
     return state.items.filter(item => item.completed)
   },
   itemsActive: state => {
-    return state.items.filter(item => !item.completed)
+    return state.items.filter(item => item.completed === false)
   }
 }
 // actions
@@ -72,10 +72,17 @@ const mutations = {
     console.log('price edited')
     state.items.find(item => item.id === id).price = price
   },
-  addItem(state, newItem) {
-    console.log(newItem)
-    const newID = state.items.length
-
+  addItem(state, newName) {
+    console.log(newName)
+    let newItem = {
+      id: state.items.length,
+      name: newName,
+      completed: false,
+      price: null,
+      user: null,
+      category: null
+    }
+    state.items.push(newItem)
     console.log('item added')
   }
 }
