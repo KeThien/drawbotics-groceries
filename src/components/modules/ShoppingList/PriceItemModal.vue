@@ -11,6 +11,7 @@
           label="Price"
           clearable
           prefix="€"
+          autofocus
           :rules="[rules.number]"
         ></v-text-field>
         <v-autocomplete :items="itemUser" label="Who"></v-autocomplete>

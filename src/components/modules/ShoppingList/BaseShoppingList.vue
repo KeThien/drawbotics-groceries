@@ -1,26 +1,27 @@
 <template>
   <v-layout column my-4>
     <AddShoppingListItem @shoppingListChange="handleShoppingListChange" />
-
-    <BaseShoppingListItem
-      v-for="(item, index) in itemsActive"
-      :key="index"
-      :item="item"
-      @toggleItem="toggleItem(item)"
-    />
-    <v-flex my-4>
-      <v-expansion-panel mandatory expand v-model="completedPanel">
-        <v-expansion-panel-content>
-          <div slot="header">Completed</div>
-          <BaseShoppingListItem
-            v-for="(item, index) in itemsCompleted"
-            :key="index"
-            :item="item"
-            @toggleItem="toggleItem(item)"
-          />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-flex>
+    <div style="max-height: 400px" class="scroll-y">
+      <BaseShoppingListItem
+        v-for="(item, index) in itemsActive"
+        :key="index"
+        :item="item"
+        @toggleItem="toggleItem(item)"
+      />
+      <v-flex my-4>
+        <v-expansion-panel mandatory expand v-model="completedPanel">
+          <v-expansion-panel-content>
+            <div slot="header">Completed</div>
+            <BaseShoppingListItem
+              v-for="(item, index) in itemsCompleted"
+              :key="index"
+              :item="item"
+              @toggleItem="toggleItem(item)"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-flex>
+    </div>
   </v-layout>
 </template>
 
