@@ -6,6 +6,14 @@
         <p>{{item.category}}</p>
       </v-card-title>
       <v-card-text>
+        <v-select
+          v-model="selectedCat"
+          :items="categoriesName"
+          label="Category"
+          color="pink"
+          no-data-text="no category"
+          clearable
+        ></v-select>
         <v-text-field
           v-model="itemPrice"
           label="Price"
@@ -84,6 +92,23 @@ export default {
     },
     isChecked() {
       return this.item.completed ? "uncheck" : "check";
+    },
+    categories() {
+      return this.$store.state.shoppingList.categories;
+    },
+    categoriesName() {
+      return this.categories.map(category => category.name);
+    },
+    selectedCat: {
+      get() {
+        let categoryID = this.item.categoryID;
+        let categoryName = this.categories.filter(c => c.id == categoryID)[0]
+          .name;
+        return categoryName;
+      },
+      set() {
+        return null;
+      }
     }
   }
 };
