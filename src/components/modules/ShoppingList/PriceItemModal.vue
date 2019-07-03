@@ -8,7 +8,7 @@
       <v-card-text>
         <v-select
           v-model="selectedCat"
-          :items="categoriesName"
+          :items="categories.map(category => category.name)"
           label="Category"
           color="pink"
           no-data-text="no category"
@@ -96,18 +96,19 @@ export default {
     categories() {
       return this.$store.state.shoppingList.categories;
     },
-    categoriesName() {
-      return this.categories.map(category => category.name);
-    },
     selectedCat: {
       get() {
         let categoryID = this.item.categoryID;
-        let categoryName = this.categories.filter(c => c.id == categoryID)[0]
-          .name;
-        return categoryName;
+        if (categoryID !== null) {
+          let categoryName = this.categories.filter(c => c.id == categoryID)[0]
+            .name;
+          return categoryName;
+        } else {
+          return null;
+        }
       },
-      set() {
-        return null;
+      set(newValue) {
+        return newValue;
       }
     }
   }

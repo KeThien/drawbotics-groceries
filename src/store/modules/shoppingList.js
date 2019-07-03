@@ -23,7 +23,7 @@ const state = {
       completed: false,
       price: null,
       user: null,
-      categoryID: 0
+      categoryID: null
     },
     {
       id: 3,
@@ -80,7 +80,7 @@ const mutations = {
       completed: false,
       price: null,
       user: null,
-      category: null
+      categoryID: null
     }
     state.items.push(newItem)
     console.log('item added')
