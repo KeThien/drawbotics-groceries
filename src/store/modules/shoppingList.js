@@ -7,7 +7,7 @@ const state = {
       completed: false,
       price: null,
       user: null,
-      category: null
+      categoryID: 0
     },
     {
       id: 1,
@@ -15,7 +15,7 @@ const state = {
       completed: false,
       price: null,
       user: null,
-      category: null
+      categoryID: 0
     },
     {
       id: 2,
@@ -23,15 +23,15 @@ const state = {
       completed: false,
       price: null,
       user: null,
-      category: null
+      categoryID: 0
     },
     {
       id: 3,
-      name: 'Kiwi',
+      name: 'Pleurotte',
       completed: false,
       price: null,
       user: null,
-      category: null
+      categoryID: 2
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const state = {
       completed: true,
       price: 3.5,
       user: null,
-      category: null
+      categoryID: 1
     }
   ],
   categories: [
@@ -90,6 +90,15 @@ const mutations = {
     let newArray = state.items.filter(item => item.id !== id)
     state.items = newArray
     console.log(state.items)
+  },
+  addCategory(state, newName) {
+    console.log(newName)
+    let newCategory = {
+      id: state.categories[state.categories.length - 1].id + 1,
+      name: newName
+    }
+    state.categories.push(newCategory)
+    console.log('category added')
   }
 }
 export default {
