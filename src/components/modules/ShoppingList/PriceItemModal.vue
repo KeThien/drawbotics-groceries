@@ -59,16 +59,11 @@ export default {
         }
       },
       isChanged: false,
-      selectedCat: ""
+      selectedCat: null
     };
   },
   mounted() {
-    let categoryID = this.item.categoryID;
-    if (categoryID !== null) {
-      let categoryName = this.categories.filter(c => c.id == categoryID)[0]
-        .name;
-      this.selectedCat = categoryName;
-    }
+    this.selectedCat = this.item.categoryID;
     this.itemPrice = this.item.price;
     this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
   },
@@ -80,10 +75,10 @@ export default {
     handleEdit() {
       // submit price and user to database
       this.dialog = false;
-      console.log(this.selectedCat);
       const payload = {
         id: this.item.id,
-        price: Number(this.itemPrice)
+        price: Number(this.itemPrice),
+        categoryID: this.selectedCat
       };
       this.$store.commit("editItem", payload);
     },
