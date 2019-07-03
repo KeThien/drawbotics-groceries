@@ -27,8 +27,7 @@
       <v-card-actions>
         <v-layout row justify-space-around align-center wrap>
           <v-btn color="red darken-1" flat @click="handleDelete">Delete</v-btn>
-          <v-btn color="grey darken-1" flat @click="dialog = false">Cancel</v-btn>
-          <v-btn color="teal darken-1" flat @click="handleEdit">Edit</v-btn>
+          <v-btn color="teal darken-1" flat @click="handleEdit">OK</v-btn>
           <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
         </v-layout>
       </v-card-actions>
@@ -56,10 +55,18 @@ export default {
             return pattern.test(value) || "Must be a number.";
           }
         }
-      }
+      },
+      isChanged: false,
+      selectedCat: ""
     };
   },
   mounted() {
+    let categoryID = this.item.categoryID;
+    if (categoryID !== null) {
+      let categoryName = this.categories.filter(c => c.id == categoryID)[0]
+        .name;
+      this.selectedCat = categoryName;
+    }
     this.itemPrice = this.item.price;
     this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
   },
@@ -70,9 +77,8 @@ export default {
     },
     handleEdit() {
       // submit price and user to database
-      console.log("edited");
-
       this.dialog = false;
+      console.log(this.selectedCat);
       this.$store.commit("editPrice", this.item.id, this.itemPrice);
     },
     handleDelete() {
@@ -95,21 +101,6 @@ export default {
     },
     categories() {
       return this.$store.state.shoppingList.categories;
-    },
-    selectedCat: {
-      get() {
-        let categoryID = this.item.categoryID;
-        if (categoryID !== null) {
-          let categoryName = this.categories.filter(c => c.id == categoryID)[0]
-            .name;
-          return categoryName;
-        } else {
-          return null;
-        }
-      },
-      set(newValue) {
-        return newValue;
-      }
     }
   }
 };
