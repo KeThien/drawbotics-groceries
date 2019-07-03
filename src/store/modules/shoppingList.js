@@ -68,9 +68,9 @@ const mutations = {
     let isCompleted = state.items.find(item => item.id == id).completed
     state.items.find(item => item.id === id).completed = !isCompleted
   },
-  editPrice(state, id, price) {
+  editItem(state, payload) {
     console.log('price edited')
-    state.items.find(item => item.id === id).price = price
+    state.items.find(item => item.id === payload.id).price = payload.price
   },
   addItem(state, newName) {
     console.log(newName)

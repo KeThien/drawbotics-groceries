@@ -8,7 +8,9 @@
       <v-card-text>
         <v-select
           v-model="selectedCat"
-          :items="categories.map(category => category.name)"
+          :items="categories"
+          item-text="name"
+          item-value="id"
           label="Category"
           color="pink"
           no-data-text="no category"
@@ -79,7 +81,11 @@ export default {
       // submit price and user to database
       this.dialog = false;
       console.log(this.selectedCat);
-      this.$store.commit("editPrice", this.item.id, this.itemPrice);
+      const payload = {
+        id: this.item.id,
+        price: Number(this.itemPrice)
+      };
+      this.$store.commit("editItem", payload);
     },
     handleDelete() {
       this.dialog = false;

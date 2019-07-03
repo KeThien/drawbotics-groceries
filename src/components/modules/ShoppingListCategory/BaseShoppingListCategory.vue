@@ -3,7 +3,9 @@
     <v-flex xs9 offset-xs1>
       <v-select
         v-model="selectedCat"
-        :items="categoriesName"
+        :items="categories"
+        item-text="name"
+        item-value="id"
         label="Category"
         color="pink"
         no-data-text="no category"
@@ -45,10 +47,8 @@ export default {
     };
   },
   computed: {
-    categoriesName() {
-      return this.$store.state.shoppingList.categories.map(
-        category => category.name
-      );
+    categories() {
+      return this.$store.state.shoppingList.categories;
     }
   },
   methods: {
