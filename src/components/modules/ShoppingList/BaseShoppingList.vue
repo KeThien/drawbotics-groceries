@@ -1,38 +1,41 @@
 <template>
   <v-layout column my-4>
-    <AddShoppingItem />
-
-    <BaseShoppingListItem
-      v-for="(item, index) in itemsActive"
-      :key="index"
-      :item="item"
-      @toggleItem="toggleItem(item)"
-    />
-    <v-flex my-4>
-      <v-expansion-panel mandatory expand v-model="completedPanel">
-        <v-expansion-panel-content>
-          <div slot="header">Completed</div>
-          <BaseShoppingListItem
-            v-for="(item, index) in itemsCompleted"
-            :key="index"
-            :item="item"
-            @toggleItem="toggleItem(item)"
-          />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-flex>
+    <AddShoppingListItem @shoppingListChange="handleShoppingListChange" />
+    <div style="max-height: 400px" class="scroll-y">
+      <BaseShoppingListItem
+        v-for="(item, index) in itemsActive"
+        :key="index"
+        :item="item"
+        @toggleItem="toggleItem(item)"
+        @clickDelete="handleShoppingListChange"
+      />
+      <v-flex my-4>
+        <v-expansion-panel mandatory expand v-model="completedPanel">
+          <v-expansion-panel-content>
+            <div slot="header">Completed</div>
+            <BaseShoppingListItem
+              v-for="(item, index) in itemsCompleted"
+              :key="index"
+              :item="item"
+              @toggleItem="toggleItem(item)"
+              @clickDelete="handleShoppingListChange"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-flex>
+    </div>
   </v-layout>
 </template>
 
 <script>
 import BaseShoppingListItem from "./BaseShoppingListItem";
-import AddShoppingItem from "./AddShoppingItem";
+import AddShoppingListItem from "./AddShoppingListItem";
 
 export default {
   name: "BaseShoppingList",
   components: {
     BaseShoppingListItem,
-    AddShoppingItem
+    AddShoppingListItem
   },
   data() {
     return {
@@ -46,9 +49,11 @@ export default {
       return this.$store.state.shoppingList.items;
     }
   },
-  mounted() {
-    this.itemsActive = this.items.filter(item => item.completed === false);
-    this.itemsCompleted = this.items.filter(item => item.completed === true);
+  created() {
+    // this.itemsActive = this.items.filter(item => item.completed === false);
+    // this.itemsCompleted = this.items.filter(item => item.completed === true);
+    this.itemsActive = this.$store.getters.itemsActive;
+    this.itemsCompleted = this.$store.getters.itemsCompleted;
   },
   methods: {
     toggleItem(item) {
@@ -62,6 +67,10 @@ export default {
         this.itemsCompleted = this.itemsCompleted.filter(e => e !== item);
       }
       this.$store.commit("checking", item.id);
+    },
+    handleShoppingListChange() {
+      this.itemsActive = this.$store.getters.itemsActive;
+      this.itemsCompleted = this.$store.getters.itemsCompleted;
     }
   }
 };
