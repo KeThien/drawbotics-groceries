@@ -1,7 +1,7 @@
 <template>
   <v-layout justify-center align-center my-3>
     <v-flex shrink>
-      <v-btn flat color="pink">Show All</v-btn>
+      <v-btn flat color="pink" @click="handleFilter(null)">Show All</v-btn>
     </v-flex>
     <v-flex xs6 grow>
       <v-select
@@ -12,6 +12,7 @@
         label="Category"
         color="pink"
         no-data-text="no category"
+        @input="handleFilter"
       ></v-select>
     </v-flex>
     <v-flex xs1>
@@ -82,6 +83,10 @@ export default {
         newName: this.newName
       };
       this.$store.commit("addEditCategory", payload);
+      if (this.title == "Add") {
+        this.selectedCat = this.categories[this.categories.length - 1].id;
+        this.handleFilter(this.selectedCat);
+      }
       this.newName = null;
     },
     handleEditCategory() {
@@ -96,6 +101,13 @@ export default {
       this.dialog = false;
       this.$store.commit("deleteCategory", this.selectedCat);
       this.selectedCat = null;
+    },
+    handleFilter(id) {
+      if (id == null) {
+        this.selectedCat = null;
+      }
+      this.selectedCat = id;
+      this.$emit("chooseFilter", id);
     }
   }
 };

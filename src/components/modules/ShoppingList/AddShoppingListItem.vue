@@ -30,14 +30,6 @@ export default {
     return {
       dialog: false,
       newName: null
-      // newItem: {
-      //   id: null,
-      //   name: null,
-      //   completed: false,
-      //   price: null,
-      //   user: null,
-      //   category: null
-      // }
     };
   },
   mounted() {},

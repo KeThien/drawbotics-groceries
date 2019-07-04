@@ -51,11 +51,30 @@ const state = {
 }
 // getters
 const getters = {
-  itemsCompleted: state => {
-    return state.items.filter(item => item.completed)
+  itemsCompleted: state => catId => {
+    if (catId === null) {
+      return state.items.filter(i => i.completed)
+    } else {
+      return state.items.filter(
+        item => item.completed && item.categoryID === catId
+      )
+    }
   },
-  itemsActive: state => {
-    return state.items.filter(item => item.completed === false)
+  itemsActive: state => catId => {
+    if (catId === null) {
+      return state.items.filter(i => i.completed === false)
+    } else {
+      return state.items.filter(
+        item => item.completed === false && item.categoryID === catId
+      )
+    }
+  },
+  getFilteredList: state => id => {
+    if (id === null) {
+      return state.items
+    } else {
+      return state.items.filter(i => i.categoryID == id)
+    }
   }
 }
 // actions

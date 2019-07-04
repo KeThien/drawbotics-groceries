@@ -85,7 +85,7 @@ export default {
     handleDelete() {
       this.dialog = false;
       this.$store.commit("deleteItem", this.item.id);
-      this.$emit("clickDelete");
+      // this.$emit("clickDelete");
     }
   },
   computed: {
