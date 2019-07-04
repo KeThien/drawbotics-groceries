@@ -14,13 +14,12 @@
         no-data-text="no category"
       ></v-select>
     </v-flex>
-
     <v-flex xs1>
       <v-btn flat icon color="pink" @click="handleAddCategory">
         <v-icon>add</v-icon>
       </v-btn>
     </v-flex>
-    <v-flex xs1>
+    <v-flex xs2>
       <v-btn :disabled="selectedCat == null" flat icon color="pink" @click="handleEditCategory">
         <v-icon>edit</v-icon>
       </v-btn>
@@ -58,7 +57,10 @@ export default {
       selectedCat: null,
       dialog: false,
       newName: null,
-      title: ""
+      title: "",
+      snackbar: false,
+      snackbarText: "Category deleted",
+      snackbarTimeout: 10000
     };
   },
   computed: {
@@ -90,8 +92,10 @@ export default {
       this.dialog = true;
     },
     handleDeleteCategory() {
+      this.snackbar = true;
       this.dialog = false;
-      console.log("delete");
+      this.$store.commit("deleteCategory", this.selectedCat);
+      this.selectedCat = null;
     }
   }
 };

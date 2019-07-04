@@ -90,7 +90,6 @@ const mutations = {
     console.log('item deleted')
     let newArray = state.items.filter(item => item.id !== id)
     state.items = newArray
-    console.log(state.items)
   },
   addEditCategory(state, payload) {
     console.log(payload)
@@ -108,6 +107,13 @@ const mutations = {
       state.categories.push(newCategory)
       console.log('category added')
     }
+  },
+  deleteCategory(state, id) {
+    let itemsToChange = state.items.filter(item => item.categoryID == id)
+    itemsToChange.forEach(item => (item.categoryID = null))
+    let removeIndex = state.categories.map(category => category.id).indexOf(id)
+    state.categories.splice(removeIndex, 1)
+    console.log(`category with id:${removeIndex} deleted`)
   }
 }
 export default {
