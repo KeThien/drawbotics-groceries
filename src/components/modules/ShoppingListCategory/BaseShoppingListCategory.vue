@@ -70,14 +70,23 @@ export default {
     handleAddCategory() {
       this.title = "Add";
       this.dialog = true;
+      this.newName = null;
     },
     handleSubmitCategory() {
       this.dialog = false;
-      this.$store.commit("addCategory", this.newName);
+      const payload = {
+        isEdit: this.title == "Edit",
+        id: this.title == "Edit" ? this.selectedCat : null,
+        newName: this.newName
+      };
+      this.$store.commit("addEditCategory", payload);
       this.newName = null;
     },
     handleEditCategory() {
       this.title = "Edit";
+      let selectedName = this.categories.find(c => c.id == this.selectedCat)
+        .name;
+      this.newName = selectedName;
       this.dialog = true;
     },
     handleDeleteCategory() {

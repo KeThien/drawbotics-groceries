@@ -92,14 +92,22 @@ const mutations = {
     state.items = newArray
     console.log(state.items)
   },
-  addCategory(state, newName) {
-    console.log(newName)
-    let newCategory = {
-      id: state.categories[state.categories.length - 1].id + 1,
-      name: newName
+  addEditCategory(state, payload) {
+    console.log(payload)
+    if (payload.isEdit) {
+      // payload.id
+      // payload.newName
+      let category = state.categories.filter(c => c.id == payload.id)
+      category[0].name = payload.newName
+      console.log('category edited')
+    } else {
+      let newCategory = {
+        id: state.categories[state.categories.length - 1].id + 1,
+        name: payload.newName
+      }
+      state.categories.push(newCategory)
+      console.log('category added')
     }
-    state.categories.push(newCategory)
-    console.log('category added')
   }
 }
 export default {

@@ -29,8 +29,9 @@
       <v-card-actions>
         <v-layout row justify-space-around align-center wrap>
           <v-btn color="red darken-1" flat @click="handleDelete">Delete</v-btn>
-          <v-btn color="teal darken-1" flat @click="handleEdit">OK</v-btn>
+          <v-spacer></v-spacer>
           <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
+          <v-btn color="teal darken-1" flat @click="handleEdit">OK</v-btn>
         </v-layout>
       </v-card-actions>
     </v-card>
