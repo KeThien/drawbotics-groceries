@@ -101,6 +101,7 @@ export default {
       this.dialog = false;
       this.$store.commit("deleteCategory", this.selectedCat);
       this.selectedCat = null;
+      this.handleFilter(this.selectedCat);
     },
     handleFilter(id) {
       if (id == null) {
