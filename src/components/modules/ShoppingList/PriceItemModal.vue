@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { log } from "util";
 export default {
   props: {
     item: Object,
