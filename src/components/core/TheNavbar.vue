@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-nav :value="true" absolute app color="transparent">
+  <v-bottom-nav :value="true" app fixed>
     <v-btn color="teal" flat value="list" to="/">
       <span>List</span>
       <v-icon>list</v-icon>
@@ -21,5 +21,5 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>

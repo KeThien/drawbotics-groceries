@@ -1,7 +1,7 @@
 <template>
   <v-layout column my-4>
     <AddShoppingListItem @shoppingListChange="handleShoppingListChange" :selectedCat="selectedCat" />
-    <div style="max-height: 400px" class="scroll-y">
+    <div class="scroll-y">
       <BaseShoppingListItem
         v-for="(item, index) in itemsActive"
         :key="index"
