@@ -92,15 +92,15 @@ const mutations = {
     const item = state.items.find(item => item.id === payload.id)
     Object.assign(item, payload)
   },
-  addItem(state, newName) {
-    console.log(newName)
+  addItem(state, payload) {
+    console.log(payload)
     let newItem = {
       id: state.items[state.items.length - 1].id + 1,
-      name: newName,
+      name: payload.name,
       completed: false,
       price: null,
       user: null,
-      categoryID: null
+      categoryID: payload.categoryID
     }
     state.items.push(newItem)
     console.log('item added')

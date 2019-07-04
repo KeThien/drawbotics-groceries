@@ -1,6 +1,6 @@
 <template>
   <v-layout column my-4>
-    <AddShoppingListItem @shoppingListChange="handleShoppingListChange" />
+    <AddShoppingListItem @shoppingListChange="handleShoppingListChange" :selectedCat="selectedCat" />
     <div style="max-height: 400px" class="scroll-y">
       <BaseShoppingListItem
         v-for="(item, index) in itemsActive"

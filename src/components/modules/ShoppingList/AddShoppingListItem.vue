@@ -26,6 +26,9 @@
 
 <script>
 export default {
+  props: {
+    selectedCat: Number
+  },
   data() {
     return {
       dialog: false,
@@ -39,7 +42,11 @@ export default {
     },
     handleSubmitItem() {
       this.dialog = false;
-      this.$store.commit("addItem", this.newName);
+      let payload = {
+        name: this.newName,
+        categoryID: this.selectedCat
+      };
+      this.$store.commit("addItem", payload);
       this.newName = null;
       this.$emit("shoppingListChange");
     }
