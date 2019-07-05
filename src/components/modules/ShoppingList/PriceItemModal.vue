@@ -13,7 +13,7 @@
           item-value="id"
           label="Category"
           color="pink"
-          no-data-text="no category"
+          no-data-text="No category"
           clearable
         ></v-select>
         <v-text-field
@@ -24,7 +24,15 @@
           autofocus
           :rules="[rules.number]"
         ></v-text-field>
-        <v-autocomplete :items="itemUser" label="Who"></v-autocomplete>
+        <v-select
+          v-model="selectedUser"
+          :items="itemUser"
+          item-text="name"
+          item-value="id"
+          label="Who"
+          no-date-text="No User"
+          clearable
+        ></v-select>
       </v-card-text>
       <v-card-actions>
         <v-layout row justify-space-around align-center wrap>
@@ -59,7 +67,8 @@ export default {
         }
       },
       isChanged: false,
-      selectedCat: null
+      selectedCat: null,
+      selectedUser: null
     };
   },
   mounted() {
@@ -78,7 +87,8 @@ export default {
       const payload = {
         id: this.item.id,
         price: Number(this.itemPrice),
-        categoryID: this.selectedCat
+        categoryID: this.selectedCat,
+        user: this.selectedUser
       };
       this.$store.commit("editItem", payload);
     },
