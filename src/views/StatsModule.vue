@@ -1,9 +1,16 @@
 <template>
-  <v-container>This is features stats (WIP)</v-container>
+  <v-container>
+    <ShowStats />
+  </v-container>
 </template>
 
 <script>
-export default {};
+import ShowStats from "@/components/modules/ShoppingStats/ShowStats";
+export default {
+  components: {
+    ShowStats
+  }
+};
 </script>
 
 <style>

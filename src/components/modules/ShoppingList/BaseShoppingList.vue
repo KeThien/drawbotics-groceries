@@ -1,13 +1,12 @@
 <template>
   <v-layout column my-4>
-    <AddShoppingListItem @shoppingListChange="handleShoppingListChange" />
-    <div style="max-height: 400px" class="scroll-y">
+    <AddShoppingListItem @shoppingListChange="handleShoppingListChange" :selectedCat="selectedCat" />
+    <div class="scroll-y">
       <BaseShoppingListItem
         v-for="(item, index) in itemsActive"
         :key="index"
         :item="item"
         @toggleItem="toggleItem(item)"
-        @clickDelete="handleShoppingListChange"
       />
       <v-flex my-4>
         <v-expansion-panel mandatory expand v-model="completedPanel">
@@ -18,7 +17,6 @@
               :key="index"
               :item="item"
               @toggleItem="toggleItem(item)"
-              @clickDelete="handleShoppingListChange"
             />
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -33,27 +31,38 @@ import AddShoppingListItem from "./AddShoppingListItem";
 
 export default {
   name: "BaseShoppingList",
+  props: {
+    selectedCat: Number
+  },
   components: {
     BaseShoppingListItem,
     AddShoppingListItem
   },
   data() {
     return {
-      completedPanel: [true],
-      itemsActive: [],
-      itemsCompleted: []
+      completedPanel: [true]
     };
   },
   computed: {
     items() {
-      return this.$store.state.shoppingList.items;
+      return this.$store.getters.getFilteredList(this.selectedCat);
+    },
+    itemsActive: {
+      get() {
+        return this.items.filter(item => item.completed === false);
+      },
+      set(newValue) {
+        return newValue;
+      }
+    },
+    itemsCompleted: {
+      get() {
+        return this.items.filter(item => item.completed === true);
+      },
+      set(newValue) {
+        return newValue;
+      }
     }
-  },
-  created() {
-    // this.itemsActive = this.items.filter(item => item.completed === false);
-    // this.itemsCompleted = this.items.filter(item => item.completed === true);
-    this.itemsActive = this.$store.getters.itemsActive;
-    this.itemsCompleted = this.$store.getters.itemsCompleted;
   },
   methods: {
     toggleItem(item) {
@@ -69,8 +78,10 @@ export default {
       this.$store.commit("checking", item.id);
     },
     handleShoppingListChange() {
-      this.itemsActive = this.$store.getters.itemsActive;
-      this.itemsCompleted = this.$store.getters.itemsCompleted;
+      this.itemsActive = this.$store.getters.itemsActive(this.selectedCat);
+      this.itemsCompleted = this.$store.getters.itemsCompleted(
+        this.selectedCat
+      );
     }
   }
 };

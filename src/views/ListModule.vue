@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <BaseShoppingListCategory />
-    <BaseShoppingList />
+    <BaseShoppingListCategory @chooseFilter="chooseFilter" />
+    <BaseShoppingList :selectedCat="selectedCat" />
   </v-container>
 </template>
 
@@ -17,8 +17,13 @@ export default {
   },
   data() {
     return {
-      //
+      selectedCat: null
     };
+  },
+  methods: {
+    chooseFilter(categoryID) {
+      this.selectedCat = categoryID;
+    }
   }
 };
 </script>

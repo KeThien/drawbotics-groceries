@@ -6,6 +6,16 @@
         <p>{{item.category}}</p>
       </v-card-title>
       <v-card-text>
+        <v-select
+          v-model="selectedCat"
+          :items="categories"
+          item-text="name"
+          item-value="id"
+          label="Category"
+          color="pink"
+          no-data-text="No category"
+          clearable
+        ></v-select>
         <v-text-field
           v-model="itemPrice"
           label="Price"
@@ -14,14 +24,22 @@
           autofocus
           :rules="[rules.number]"
         ></v-text-field>
-        <v-autocomplete :items="itemUser" label="Who"></v-autocomplete>
+        <v-select
+          v-model="selectedUser"
+          :items="itemUser"
+          item-text="name"
+          item-value="id"
+          label="Who"
+          no-date-text="No User"
+          clearable
+        ></v-select>
       </v-card-text>
       <v-card-actions>
         <v-layout row justify-space-around align-center wrap>
           <v-btn color="red darken-1" flat @click="handleDelete">Delete</v-btn>
-          <v-btn color="grey darken-1" flat @click="dialog = false">Cancel</v-btn>
-          <v-btn color="teal darken-1" flat @click="handleEdit">Edit</v-btn>
+          <v-spacer></v-spacer>
           <v-btn color="teal darken-1" small outline @click="handleCheck">{{isChecked}}</v-btn>
+          <v-btn color="teal darken-1" flat @click="handleEdit">OK</v-btn>
         </v-layout>
       </v-card-actions>
     </v-card>
@@ -29,7 +47,6 @@
 </template>
 
 <script>
-import { log } from "util";
 export default {
   props: {
     item: Object,
@@ -48,10 +65,15 @@ export default {
             return pattern.test(value) || "Must be a number.";
           }
         }
-      }
+      },
+      isChanged: false,
+      selectedCat: null,
+      selectedUser: null
     };
   },
   mounted() {
+    this.selectedUser = this.item.user;
+    this.selectedCat = this.item.categoryID;
     this.itemPrice = this.item.price;
     this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
   },
@@ -62,15 +84,19 @@ export default {
     },
     handleEdit() {
       // submit price and user to database
-      console.log("edited");
-
       this.dialog = false;
-      this.$store.commit("editPrice", this.item.id, this.itemPrice);
+      const payload = {
+        id: this.item.id,
+        price: Number(this.itemPrice),
+        categoryID: this.selectedCat,
+        user: this.selectedUser
+      };
+      this.$store.commit("editItem", payload);
     },
     handleDelete() {
       this.dialog = false;
       this.$store.commit("deleteItem", this.item.id);
-      this.$emit("clickDelete");
+      // this.$emit("clickDelete");
     }
   },
   computed: {
@@ -84,6 +110,9 @@ export default {
     },
     isChecked() {
       return this.item.completed ? "uncheck" : "check";
+    },
+    categories() {
+      return this.$store.state.shoppingList.categories;
     }
   }
 };
