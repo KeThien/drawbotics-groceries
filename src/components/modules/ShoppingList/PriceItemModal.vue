@@ -72,6 +72,7 @@ export default {
     };
   },
   mounted() {
+    this.selectedUser = this.item.user;
     this.selectedCat = this.item.categoryID;
     this.itemPrice = this.item.price;
     this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
