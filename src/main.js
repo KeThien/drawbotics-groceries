@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './plugins/vuetify'
+import './plugins/chartkick'
 import App from './App.vue'
 import store from './store/index'
 import router from './router'

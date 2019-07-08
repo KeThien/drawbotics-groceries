@@ -5,32 +5,32 @@ const state = {
       id: 0,
       name: 'Pamplemousse',
       completed: false,
-      price: null,
-      user: null,
+      price: 5,
+      user: 'Mario',
       categoryID: 0
     },
     {
       id: 1,
       name: 'Banana',
       completed: false,
-      price: null,
-      user: null,
+      price: 6,
+      user: 'Yoshi',
       categoryID: 0
     },
     {
       id: 2,
       name: 'Fraise',
       completed: false,
-      price: null,
-      user: null,
+      price: 7,
+      user: 'Yoshi',
       categoryID: null
     },
     {
       id: 3,
       name: 'Pleurotte',
       completed: false,
-      price: null,
-      user: null,
+      price: 8,
+      user: 'Harry',
       categoryID: 2
     },
     {
@@ -38,7 +38,7 @@ const state = {
       name: 'Courgette',
       completed: true,
       price: 3.5,
-      user: null,
+      user: 'Geralt',
       categoryID: 1
     }
   ],
