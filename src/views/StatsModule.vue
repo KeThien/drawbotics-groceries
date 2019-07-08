@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    This is features stats (WIP)
     <ShowStats />
   </v-container>
 </template>
