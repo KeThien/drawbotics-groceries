@@ -24,7 +24,7 @@ The goal is to provide a simple but complete app for managing groceries of a com
 
 ## ⌨️ Technologies
 [Vue.js](https://vuejs.org/) framework with [Vue-CLI](https://cli.vuejs.org/)  
-[Vuetify](https://vuetifyjs.com/en/), [Vuex]() and [Chartkick.js](https://chartkick.com/vue) plugin
+[Vuetify](https://vuetifyjs.com/en/), [Vuex](https://vuex.vuejs.org/) and [Chartkick.js](https://chartkick.com/vue) plugin
 
 ## 🚀 Install and launch the local server 
 ```
