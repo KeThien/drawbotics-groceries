@@ -71,11 +71,13 @@ export default {
   },
   methods: {
     handleAddCategory() {
+      // handler to open the add module for Category
       this.title = "Add";
       this.dialog = true;
       this.newName = null;
     },
     handleSubmitCategory() {
+      // handler to submit a Category
       this.dialog = false;
       const payload = {
         isEdit: this.title == "Edit",
@@ -90,6 +92,7 @@ export default {
       this.newName = null;
     },
     handleEditCategory() {
+      // handler to Edit the Category
       this.title = "Edit";
       let selectedName = this.categories.find(c => c.id == this.selectedCat)
         .name;
@@ -97,6 +100,7 @@ export default {
       this.dialog = true;
     },
     handleDeleteCategory() {
+      // handler to Delete the Category
       this.snackbar = true;
       this.dialog = false;
       this.$store.commit("deleteCategory", this.selectedCat);
@@ -104,6 +108,7 @@ export default {
       this.handleFilter(this.selectedCat);
     },
     handleFilter(id) {
+      // handler to show the selected Category in the input select
       if (id == null) {
         this.selectedCat = null;
       }

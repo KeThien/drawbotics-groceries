@@ -79,11 +79,12 @@ export default {
   },
   methods: {
     handleCheck() {
+      // handler to check as completed
       this.dialog = false;
       this.$emit("toggleCheck");
     },
     handleEdit() {
-      // submit price and user to database
+      // handler to submit/edit price, user,categoryID to the store
       this.dialog = false;
       const payload = {
         id: this.item.id,
@@ -94,9 +95,9 @@ export default {
       this.$store.commit("editItem", payload);
     },
     handleDelete() {
+      // handler to delete an item from the store
       this.dialog = false;
       this.$store.commit("deleteItem", this.item.id);
-      // this.$emit("clickDelete");
     }
   },
   computed: {
