@@ -6,10 +6,25 @@ The goal is to provide a simple but complete app for managing groceries of a com
 
 [**DEMO**](https://quirky-saha-ab0f86.netlify.com/#/) build in [Netlify](https://www.netlify.com/)
 
+
+
+## Table of contents  <!-- omit in toc -->
+- [🍉 Front-end Project - Groceries](#-Front-end-Project---Groceries)
+  - [⌨️ Technologies](#️-Technologies)
+  - [🚀 Install and launch the local server](#-Install-and-launch-the-local-server)
+  - [📁 Source Folder Structure](#-Source-Folder-Structure)
+    - [1. Shopping List Module](#1-Shopping-List-Module)
+    - [2. Shopping List Category Component](#2-Shopping-List-Category-Component)
+    - [3. Shopping Stats Module](#3-Shopping-Stats-Module)
+    - [4. Store (Vuex)](#4-Store-Vuex)
+  - [💡 Possible Future features](#-Possible-Future-features)
+  - [⌛ Features to add for a full-flegded app](#-Features-to-add-for-a-full-flegded-app)
+  - [🌊 Workflow](#-Workflow)
+  - [🎯 Challenges / Difficulties](#-Challenges--Difficulties)
+
 ## ⌨️ Technologies
 [Vue.js](https://vuejs.org/) framework with [Vue-CLI](https://cli.vuejs.org/)  
 [Vuetify](https://vuetifyjs.com/en/), [Vuex]() and [Chartkick.js](https://chartkick.com/vue) plugin
-
 
 ## 🚀 Install and launch the local server 
 ```
