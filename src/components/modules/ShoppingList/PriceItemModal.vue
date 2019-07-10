@@ -48,6 +48,7 @@
 
 <script>
 export default {
+  name: "PriceItemModal",
   props: {
     item: Object,
     open: Boolean
