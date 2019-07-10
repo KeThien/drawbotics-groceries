@@ -17,8 +17,8 @@
         ></v-text-field>
       </v-card-text>
       <v-card-actions>
-        <v-layout row justify-space-around align-center wrap>
-          <v-btn color="teal darken-1" dark type="submit" :loading="loading">Log in</v-btn>
+        <v-layout row justify-center>
+          <v-btn color="teal darken-1" dark @click="handleLogin" :loading="loading">Log in</v-btn>
         </v-layout>
       </v-card-actions>
     </v-card>
@@ -26,6 +26,9 @@
 </template>
 
 <script>
+import { setTimeout } from "timers";
+import router from "../router";
+
 export default {
   name: "LoginModal",
   props: {
@@ -35,27 +38,32 @@ export default {
     return {
       loading: false,
       show1: false,
+      error: "",
       username: "",
       password: "",
       rules: {
         required: value => !!value || "Required.",
-        min: v => v.length >= 8 || "Min 8 characters"
+        min: v => v.length >= 4 || "Min 4 characters"
       }
     };
   },
   computed: {
-    isOpen: {
-      get() {
-        return this.open;
-      },
-      set(newValue) {
-        this.$emit("closeModal", newValue);
-      }
+    isLogin() {
+      return this.$store.state.isLogin;
     }
   },
   methods: {
     handleLogin() {
-      this.console.log("login submitted");
+      if (this.username !== "" && this.password !== "") {
+        this.loading = true;
+        setTimeout(() => (this.loading = false), 1000);
+        console.log("login submitted");
+      }
+      this.$store.commit("logUser", {
+        username: this.username,
+        password: this.password
+      });
+      router.push({ path: "/" });
     }
   }
 };

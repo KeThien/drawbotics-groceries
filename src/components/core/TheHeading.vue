@@ -8,8 +8,8 @@
       <v-btn v-if="isLogged === false" flat to="login">
         <span>Login</span>
       </v-btn>
-      <v-btn v-if="isLogged === true" flat>
-        <span>{{user}}</span>
+      <v-btn v-if="isLogged === true" flat to="login" @click="logout">
+        <span>Logout</span>
       </v-btn>
       <v-btn v-if="isAdmin === true && isLogged === true" flat>
         <span>Admin Panel</span>
@@ -22,14 +22,18 @@
 export default {
   data() {
     return {
-      isLogged: false,
       isAdmin: false,
       user: "user"
     };
   },
+  computed: {
+    isLogged() {
+      return this.$store.state.isLogged;
+    }
+  },
   methods: {
-    login() {
-      // this.isOpenModal = true;
+    logout() {
+      this.$store.commit("logout");
     }
   }
 };
