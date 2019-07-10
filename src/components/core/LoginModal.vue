@@ -1,30 +1,28 @@
 <template>
-  <v-dialog v-model="isOpen" persistent full-width>
-    <v-card>
-      <v-card-title>
-        <h3>Login to Your Account</h3>
-      </v-card-title>
-      <v-card-text>
-        <v-text-field v-model="username" label="Username" autofocus :rules="[rules.required]"></v-text-field>
-        <v-text-field
-          v-model="password"
-          :append-icon="show1 ? 'visibility' : 'visibility_off'"
-          :rules="[rules.required, rules.min]"
-          :type="show1 ? 'text' : 'password'"
-          name="input-10-1"
-          label="Password"
-          @click:append="show1 = !show1"
-        ></v-text-field>
-      </v-card-text>
-      <v-card-actions>
-        <v-layout row justify-space-around align-center wrap>
-          <v-btn color="red darken-1" flat @click="isOpen = false">Cancel</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn color="teal darken-1" flat type="submit">Log in</v-btn>
-        </v-layout>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+  <v-card>
+    <v-card-title>
+      <h3>Login to Your Account</h3>
+    </v-card-title>
+    <v-card-text>
+      <v-text-field v-model="username" label="Username" autofocus :rules="[rules.required]"></v-text-field>
+      <v-text-field
+        v-model="password"
+        :append-icon="show1 ? 'visibility' : 'visibility_off'"
+        :rules="[rules.required, rules.min]"
+        :type="show1 ? 'text' : 'password'"
+        name="input-10-1"
+        label="Password"
+        @click:append="show1 = !show1"
+      ></v-text-field>
+    </v-card-text>
+    <v-card-actions>
+      <v-layout row justify-space-around align-center wrap>
+        <v-btn color="red darken-1" flat @click="isOpen = false">Cancel</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="teal darken-1" flat type="submit" :loading="loading">Log in</v-btn>
+      </v-layout>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -35,6 +33,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       show1: false,
       username: "",
       password: "",
@@ -56,7 +55,7 @@ export default {
   },
   methods: {
     handleLogin() {
-      console.log("login submitted");
+      this.console.log("login submitted");
     }
   }
 };

@@ -16,19 +16,22 @@ export default new Router({
       path: '/stats',
       name: 'stats',
       // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      // this generates a separate chunk (stats.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/StatsModule.vue')
+        import(/* webpackChunkName: "stats" */ './views/StatsModule.vue')
     },
     {
       path: '/recipes',
       name: 'recipes',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/RecipesModule.vue')
+        import(/* webpackChunkName: "recipes" */ './views/RecipesModule.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () =>
+        import(/* webpackChunkName: "login" */ './views/LoginPage.vue')
     }
   ]
 })

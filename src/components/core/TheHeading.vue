@@ -5,7 +5,7 @@
         <span>Groceries APP</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="isLogged === false" flat @click="openModal">
+      <v-btn v-if="isLogged === false" flat to="login">
         <span>Login</span>
       </v-btn>
       <v-btn v-if="isLogged === true" flat>
@@ -15,31 +15,21 @@
         <span>Admin Panel</span>
       </v-btn>
     </v-toolbar>
-    <LoginModal :open="isOpenModal" @closeModal="closeModal($event)" />
   </div>
 </template>
 
 <script>
-import LoginModal from "./LoginModal";
-
 export default {
-  components: {
-    LoginModal
-  },
   data() {
     return {
       isLogged: false,
       isAdmin: false,
-      user: "user",
-      isOpenModal: false
+      user: "user"
     };
   },
   methods: {
-    openModal() {
-      this.isOpenModal = true;
-    },
-    closeModal() {
-      this.isOpenModal = false;
+    login() {
+      // this.isOpenModal = true;
     }
   }
 };
