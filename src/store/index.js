@@ -18,6 +18,6 @@ export default new Vuex.Store({
       { id: 5, name: 'Yennefer', isAdmin: false }
     ]
   },
-  mutations: {},
-  actions: {}
+  actions: {},
+  mutations: {}
 })
