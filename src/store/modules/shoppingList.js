@@ -46,14 +46,6 @@ const state = {
     { id: 0, name: 'Fruits' },
     { id: 1, name: 'Legumes' },
     { id: 2, name: 'Champignons' }
-  ],
-  users: [
-    { id: 0, name: 'Mario' },
-    { id: 1, name: 'Yoshi' },
-    { id: 2, name: 'Hermione' },
-    { id: 3, name: 'Harry' },
-    { id: 4, name: 'Geralt' },
-    { id: 5, name: 'Yennefer' }
   ]
 }
 // getters

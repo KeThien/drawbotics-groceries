@@ -55,7 +55,7 @@ export default {
     },
     ...mapState({
       items: state => state.shoppingList.items,
-      users: state => state.shoppingList.users
+      users: state => state.users
     })
   }
 };

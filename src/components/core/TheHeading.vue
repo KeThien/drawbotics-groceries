@@ -20,8 +20,8 @@
 export default {
   data() {
     return {
-      isLogged: true,
-      isAdmin: true,
+      isLogged: false,
+      isAdmin: false,
       user: "user"
     };
   }
