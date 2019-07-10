@@ -5,25 +5,16 @@
         <h3>Login to Your Account</h3>
       </v-card-title>
       <v-card-text>
+        <v-text-field v-model="username" label="Username" autofocus :rules="[rules.required]"></v-text-field>
         <v-text-field
-          v-model="username"
-          label="Username"
-          autofocus
-          :rules="[rules.required]"
-          clearable
+          v-model="password"
+          :append-icon="show1 ? 'visibility' : 'visibility_off'"
+          :rules="[rules.required, rules.min]"
+          :type="show1 ? 'text' : 'password'"
+          name="input-10-1"
+          label="Password"
+          @click:append="show1 = !show1"
         ></v-text-field>
-        <v-form @submit.prevent="handleLogin">
-          <v-text-field
-            v-model="password"
-            :append-icon="show1 ? 'visibility' : 'visibility_off'"
-            :rules="[rules.required, rules.min]"
-            :type="show1 ? 'text' : 'password'"
-            name="input-10-1"
-            label="Password"
-            clearable
-            @click:append="show1 = !show1"
-          ></v-text-field>
-        </v-form>
       </v-card-text>
       <v-card-actions>
         <v-layout row justify-space-around align-center wrap>

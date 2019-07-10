@@ -10,12 +10,12 @@ export default new Vuex.Store({
   },
   state: {
     users: [
-      { id: 0, name: 'Mario', isAdmin: true },
-      { id: 1, name: 'Yoshi', isAdmin: false },
-      { id: 2, name: 'Hermione', isAdmin: false },
-      { id: 3, name: 'Harry', isAdmin: false },
-      { id: 4, name: 'Geralt', isAdmin: false },
-      { id: 5, name: 'Yennefer', isAdmin: false }
+      { id: 0, name: 'Mario' },
+      { id: 1, name: 'Yoshi' },
+      { id: 2, name: 'Hermione' },
+      { id: 3, name: 'Harry' },
+      { id: 4, name: 'Geralt' },
+      { id: 5, name: 'Yennefer' }
     ]
   },
   actions: {},
