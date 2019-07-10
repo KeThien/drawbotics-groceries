@@ -29,7 +29,7 @@
         <v-layout row justify-space-around align-center wrap>
           <v-btn color="red darken-1" flat @click="isOpen = false">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="teal darken-1" flat @click="handleLogin">Log in</v-btn>
+          <v-btn color="teal darken-1" flat type="submit">Log in</v-btn>
         </v-layout>
       </v-card-actions>
     </v-card>
@@ -65,6 +65,10 @@ export default {
   },
   methods: {
     handleLogin() {
+      const { username, password } = this;
+      this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+        this.$router.push("/");
+      });
       console.log("login submitted");
     }
   }
