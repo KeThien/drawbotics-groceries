@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import shoppingList from './modules/shoppingList'
-import { longStackSupport } from 'q'
 
 Vue.use(Vuex)
 
