@@ -31,7 +31,6 @@ export default {
   computed: {
     totalSpentByUser() {
       const userList = this.users.map(user => user.name);
-      let obj = {};
       let totalSpentByUser = [];
       userList.forEach(user => {
         let userSum = 0;
