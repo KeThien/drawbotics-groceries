@@ -1,8 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 import shoppingList from './modules/shoppingList'
 
 Vue.use(Vuex)
+const vuexPersist = new VuexPersist({
+  key: 'my-app',
+  storage: localStorage,
+  reducer: state => ({
+    currentUserId: state.currentUserId,
+    isLogged: state.isLogged
+  })
+})
 
 export default new Vuex.Store({
   modules: {
@@ -39,5 +48,6 @@ export default new Vuex.Store({
       state.currentUserId = null
       state.isLogged = false
     }
-  }
+  },
+  plugins: [vuexPersist.plugin]
 })
