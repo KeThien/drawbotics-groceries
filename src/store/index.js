@@ -51,7 +51,9 @@ export default new Vuex.Store({
     getCurrentUser: state => {
       const currentUserId = state.currentUserId
       const users = state.users
-      const currentUser = users.find(user => user.id == currentUserId) || null
+      const currentUser = users.find(user => user.id == currentUserId) || {
+        isAdmin: false
+      }
       return currentUser
     }
   },

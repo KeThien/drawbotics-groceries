@@ -116,8 +116,8 @@ const getters = {
 
 ## ⌛ Features to add for a full-flegded app
 - ~~Logins~~
-- Create users
 - Have a admin panel to create user
+- Have feedback: snackbar when succesful or error
 - Have user panel / profile
 - Have a Backend API for a real database online
 

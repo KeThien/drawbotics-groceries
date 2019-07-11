@@ -21,7 +21,14 @@
       </v-btn>
     </v-flex>
     <v-flex xs2>
-      <v-btn :disabled="selectedCat == null" flat icon color="pink" @click="handleEditCategory">
+      <v-btn
+        v-if="$store.getters.getCurrentUser.isAdmin"
+        :disabled="selectedCat == null"
+        flat
+        icon
+        color="pink"
+        @click="handleEditCategory"
+      >
         <v-icon>edit</v-icon>
       </v-btn>
     </v-flex>
@@ -31,7 +38,7 @@
           <h3>{{ title }} a category</h3>
         </v-card-title>
         <v-card-text>
-          <v-form @submit="handleSubmitCategory">
+          <v-form @submit.prevent="handleSubmitCategory">
             <v-text-field v-model="newName" autofocus label="Name" clearable></v-text-field>
           </v-form>
         </v-card-text>
