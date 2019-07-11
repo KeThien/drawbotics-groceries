@@ -1,4 +1,5 @@
 // initial state
+
 const state = {
   items: [
     {
@@ -46,14 +47,6 @@ const state = {
     { id: 0, name: 'Fruits' },
     { id: 1, name: 'Legumes' },
     { id: 2, name: 'Champignons' }
-  ],
-  users: [
-    { id: 0, name: 'Mario' },
-    { id: 1, name: 'Yoshi' },
-    { id: 2, name: 'Hermione' },
-    { id: 3, name: 'Harry' },
-    { id: 4, name: 'Geralt' },
-    { id: 5, name: 'Yennefer' }
   ]
 }
 // getters
@@ -76,11 +69,27 @@ const getters = {
       )
     }
   },
-  getFilteredList: state => id => {
-    if (id === null) {
-      return state.items
-    } else {
-      return state.items.filter(i => i.categoryID == id)
+  getFilteredList: (state, getters) => catId => {
+    // find the current username with the ID
+
+    let currentUser = getters.getCurrentUser
+    // filtering items with current username and if he is admin
+    if (currentUser !== null) {
+      if (currentUser.isAdmin) {
+        if (catId === null) {
+          return state.items
+        } else {
+          return state.items.filter(i => i.categoryID == catId)
+        }
+      } else {
+        if (catId === null) {
+          return state.items.filter(i => i.user == currentUser.name)
+        } else {
+          return state.items
+            .filter(i => i.user == currentUser.name)
+            .filter(i => i.categoryID == catId)
+        }
+      }
     }
   }
 }
@@ -106,7 +115,7 @@ const mutations = {
       name: payload.name,
       completed: false,
       price: null,
-      user: null,
+      user: payload.user,
       categoryID: payload.categoryID
     }
     state.items.push(newItem)

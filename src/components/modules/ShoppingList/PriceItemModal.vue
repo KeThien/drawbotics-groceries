@@ -48,6 +48,7 @@
 
 <script>
 export default {
+  name: "PriceItemModal",
   props: {
     item: Object,
     open: Boolean
@@ -75,7 +76,7 @@ export default {
     this.selectedUser = this.item.user;
     this.selectedCat = this.item.categoryID;
     this.itemPrice = this.item.price;
-    this.itemUser = this.$store.state.shoppingList.users.map(obj => obj.name);
+    this.itemUser = this.$store.state.users.map(obj => obj.name);
   },
   methods: {
     handleCheck() {

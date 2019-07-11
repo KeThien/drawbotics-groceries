@@ -4,6 +4,7 @@
       <v-layout row fill-height align-center pa-2>
         <v-flex xs11 pl-2>
           <h3 class="item-name" :class="{completed :isChecked}">{{ item.name }}</h3>
+          <span v-if="$store.getters.getCurrentUser.isAdmin">&nbsp; by {{ item.user }}</span>
         </v-flex>
         <v-flex xs1>
           <v-checkbox v-model="isChecked" hide-details readonly color="pink"></v-checkbox>

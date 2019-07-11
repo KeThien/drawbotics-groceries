@@ -5,7 +5,7 @@ import ListModule from './views/ListModule.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -16,19 +16,34 @@ export default new Router({
       path: '/stats',
       name: 'stats',
       // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      // this generates a separate chunk (stats.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/StatsModule.vue')
+        import(/* webpackChunkName: "stats" */ './views/StatsModule.vue')
     },
     {
       path: '/recipes',
       name: 'recipes',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/RecipesModule.vue')
+        import(/* webpackChunkName: "recipes" */ './views/RecipesModule.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () =>
+        import(/* webpackChunkName: "login" */ './views/LoginPage.vue')
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login']
+  const authRequired = !publicPages.includes(to.path)
+  const loggedIn = JSON.parse(localStorage.getItem('my-app'))
+  if (authRequired && !loggedIn.isLogged) {
+    return next({
+      path: '/login'
+    })
+  }
+  next()
+})
+export default router

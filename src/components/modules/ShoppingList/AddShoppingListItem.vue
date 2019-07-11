@@ -44,7 +44,8 @@ export default {
       this.dialog = false;
       let payload = {
         name: this.newName,
-        categoryID: this.selectedCat
+        categoryID: this.selectedCat,
+        user: this.$store.getters.getCurrentUser.name
       };
       this.$store.commit("addItem", payload);
       this.newName = null;
