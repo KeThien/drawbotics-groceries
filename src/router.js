@@ -5,7 +5,7 @@ import ListModule from './views/ListModule.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -35,3 +35,15 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login']
+  const authRequired = !publicPages.includes(to.path)
+  const loggedIn = JSON.parse(localStorage.getItem('my-app'))
+  if (authRequired && !loggedIn.isLogged) {
+    return next({
+      path: '/login'
+    })
+  }
+  next()
+})
+export default router

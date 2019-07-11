@@ -6,7 +6,7 @@ import shoppingList from './modules/shoppingList'
 Vue.use(Vuex)
 const vuexPersist = new VuexPersist({
   key: 'my-app',
-  storage: localStorage,
+  storage: window.localStorage,
   reducer: state => ({
     currentUserId: state.currentUserId,
     isLogged: state.isLogged

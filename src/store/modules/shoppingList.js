@@ -1,4 +1,5 @@
 // initial state
+
 const state = {
   items: [
     {
@@ -68,11 +69,31 @@ const getters = {
       )
     }
   },
-  getFilteredList: state => id => {
-    if (id === null) {
-      return state.items
+  getFilteredList: (state, getters, rootState) => catId => {
+    // find the current username with the ID
+
+    const currentUserId = rootState.currentUserId
+    const users = rootState.users
+    const currentUser = users.find(user => user.id == currentUserId) || null
+    if (currentUser !== null) {
+      console.log(currentUser.name)
+    }
+
+    // filtering items with current username and if he is admin
+    if (currentUser.isAdmin) {
+      if (catId === null) {
+        return state.items
+      } else {
+        return state.items.filter(i => i.categoryID == catId)
+      }
     } else {
-      return state.items.filter(i => i.categoryID == id)
+      if (catId === null) {
+        return state.items.filter(i => i.user == currentUser.name)
+      } else {
+        return state.items
+          .filter(i => i.user == currentUser.name)
+          .filter(i => i.categoryID == catId)
+      }
     }
   }
 }
