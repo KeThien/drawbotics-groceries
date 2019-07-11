@@ -5,6 +5,14 @@
         <h3>List of users</h3>
       </v-card-title>
       <v-card-text>
+        <v-flex my-1 xs12>
+          <v-btn block flat class="dashed-border-btn" @click="handleAdd">
+            <span>Create new user</span>
+            <v-icon small>add</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-card-text>
+      <v-card-text>
         <v-list v-for="user in users" :key="user.id">
           <v-list-tile avatar :key="user.name" @click="handleUser(user)">
             <v-list-tile-avatar>
@@ -47,7 +55,8 @@ export default {
     return {
       currentUser: {},
       dialog: false,
-      oldName: ""
+      oldName: "",
+      isAdding: false
     };
   },
   computed: {
@@ -60,6 +69,10 @@ export default {
       this.dialog = true;
       this.currentUser = user;
       this.oldName = user.name;
+    },
+    handleAdd() {
+      this.dialog = true;
+      this.isAdding = true;
     },
     handleEdit(user) {
       this.dialog = false;
