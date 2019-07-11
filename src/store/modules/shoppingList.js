@@ -69,13 +69,7 @@ const getters = {
       )
     }
   },
-  getCurrentUser: (state, getters, rootState) => {
-    const currentUserId = rootState.currentUserId
-    const users = rootState.users
-    const currentUser = users.find(user => user.id == currentUserId) || null
-    return currentUser
-  },
-  getFilteredList: (state, getters, rootState) => catId => {
+  getFilteredList: (state, getters) => catId => {
     // find the current username with the ID
 
     let currentUser = getters.getCurrentUser
@@ -121,7 +115,7 @@ const mutations = {
       name: payload.name,
       completed: false,
       price: null,
-      user: null,
+      user: payload.user,
       categoryID: payload.categoryID
     }
     state.items.push(newItem)

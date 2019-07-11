@@ -47,5 +47,13 @@ export default new Vuex.Store({
       state.isLogged = false
     }
   },
+  getters: {
+    getCurrentUser: state => {
+      const currentUserId = state.currentUserId
+      const users = state.users
+      const currentUser = users.find(user => user.id == currentUserId) || null
+      return currentUser
+    }
+  },
   plugins: [vuexPersist.plugin]
 })

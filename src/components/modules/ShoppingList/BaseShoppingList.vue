@@ -1,5 +1,5 @@
 <template>
-  <v-layout column my-4>
+  <v-layout v-if="$store.state.isLogged" column my-4>
     <AddShoppingListItem @shoppingListChange="handleShoppingListChange" :selectedCat="selectedCat" />
     <div class="scroll-y">
       <BaseShoppingListItem
