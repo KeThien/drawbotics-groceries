@@ -30,10 +30,11 @@ Fake users to play with the demo:
   - [⌨️ Technologies](#️-Technologies)
   - [🚀 Install and launch the local server](#-Install-and-launch-the-local-server)
   - [📁 Source Folder Structure](#-Source-Folder-Structure)
-    - [1. Shopping List Module](#1-Shopping-List-Module)
-    - [2. Shopping List Category Component](#2-Shopping-List-Category-Component)
-    - [3. Shopping Stats Module](#3-Shopping-Stats-Module)
-    - [4. Store (Vuex)](#4-Store-Vuex)
+    - [Shopping List Module](#Shopping-List-Module)
+    - [Shopping List Category Component](#Shopping-List-Category-Component)
+    - [Shopping Stats Module](#Shopping-Stats-Module)
+    - [Store (Vuex)](#Store-Vuex)
+  - [Admin Panel feature](#Admin-Panel-feature)
   - [💡 Possible Future features](#-Possible-Future-features)
   - [⌛ Features to add for a full-flegded app](#-Features-to-add-for-a-full-flegded-app)
   - [🌊 Workflow](#-Workflow)
@@ -55,19 +56,19 @@ npm run serve
 ├── components
 |   |── core
 |   └── modules
-|       ├── ShoppingList          <-- 1*
-|       ├── ShoppingListCategory  <-- 2*
-|       └── ShoppingStats         <-- 3*
+|       ├── ShoppingList          
+|       ├── ShoppingListCategory  
+|       └── ShoppingStats         
 ├── plugins
 ├── store
-|   └── modules                   <-- 4*
+|   └── modules                   
 ├── views
 | App.vue
 | main.js
 | router.js
 ```
 
-### 1. Shopping List Module
+### Shopping List Module
 The main module where you can:
 - Browse through the shopping list
 - Browse through the list of completed items
@@ -77,18 +78,18 @@ The main module where you can:
 - Delete items from the shopping list
 - Now Show only items for logged user (or all for the admin)
 
-### 2. Shopping List Category Component
+### Shopping List Category Component
 - The app has categories for items
 - Filter the views by Category
 - Add new Category and add items in it
 - Edit Category per item
 - Delete Category and dissociate the items
   
-### 3. Shopping Stats Module
+### Shopping Stats Module
 - Show stats graph: spending by users
 - Show stats graph: spending by items
 
-### 4. Store (Vuex)
+### Store (Vuex)
 Use of the store to have variables around all the app and for this exercices, used like a local database.
 
 Mutations to modify the "database" and have a CRUD-like to create, read, update and delete for items and categories
@@ -109,6 +110,10 @@ const getters = {
   }
 ...
 ```
+## Admin Panel feature
+Last addition, now we can create new user and delete users with the admin account.  
+username: Mario  
+password: 1234
 
 ## 💡 Possible Future features
 - Suggests recipes based on your shopping list 
@@ -116,7 +121,7 @@ const getters = {
 
 ## ⌛ Features to add for a full-flegded app
 - ~~Logins~~
-- Have a admin panel to create user
+- ~~Have a admin panel to create, delete user~~
 - Have feedback: snackbar when succesful or error
 - Have user panel / profile
 - Have a Backend API for a real database online
@@ -131,3 +136,4 @@ On github, I made branches per new features. So I can code and try without worry
 ## 🎯 Challenges / Difficulties
 I didn't know how to use Vuex and is store before this project. So I'm very happy to have learn it from scratch and by typing the code.
 Also learn about the basic of LocalStorage and play with the router for the auth feature.
+
