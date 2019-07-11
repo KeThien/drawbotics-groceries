@@ -6,7 +6,7 @@
       </v-card-title>
       <v-card-text>
         <v-flex my-1 xs12>
-          <v-btn block flat class="dashed-border-btn" @click="handleAdd">
+          <v-btn block flat class="dashed-border-btn" @click="createNew">
             <span>Create new user</span>
             <v-icon small>add</v-icon>
           </v-btn>
@@ -28,20 +28,24 @@
     <v-dialog v-model="dialog" persistent full-width>
       <v-card>
         <v-card-text>
-          <v-form @submit.prevent="handleEdit">
+          <v-form v-if="!isAdding" @submit.prevent="handleEdit">
             <v-text-field v-model="currentUser.name" autofocus label="Name" clearable></v-text-field>
+          </v-form>
+          <v-form v-if="isAdding" @submit.prevent="handleAdd">
+            <v-text-field v-model="newName" autofocus label="Name" clearable></v-text-field>
           </v-form>
         </v-card-text>
         <v-card-actions>
           <v-btn
-            v-if="!currentUser.isAdmin"
+            v-if="!currentUser.isAdmin && !isAdding"
             color="red darken-1"
             flat
             @click="handleDelete(currentUser)"
           >Delete</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="teal darken-1" flat @click="dialog = false">Cancel</v-btn>
-          <v-btn color="teal darken-1" flat @click="handleEdit(currentUser)">Edit</v-btn>
+          <v-btn color="teal darken-1" flat @click="dialog = false; isAdding = false">Cancel</v-btn>
+          <v-btn v-if="!isAdding" color="teal darken-1" flat @click="handleEdit(currentUser)">Edit</v-btn>
+          <v-btn v-if="isAdding" color="teal darken-1" flat @click="handleAdd">Add</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -56,7 +60,8 @@ export default {
       currentUser: {},
       dialog: false,
       oldName: "",
-      isAdding: false
+      isAdding: false,
+      newName: ""
     };
   },
   computed: {
@@ -70,9 +75,17 @@ export default {
       this.currentUser = user;
       this.oldName = user.name;
     },
-    handleAdd() {
+    createNew() {
       this.dialog = true;
       this.isAdding = true;
+    },
+    handleAdd() {
+      this.dialog = false;
+      this.isAdding = false;
+      let payload = {
+        newName: this.newName
+      };
+      this.$store.commit("addUser", payload);
     },
     handleEdit(user) {
       this.dialog = false;

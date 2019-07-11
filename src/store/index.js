@@ -88,9 +88,9 @@ export default new Vuex.Store({
         name: payload.newName,
         password: '1234',
         isAdmin: false,
-        avatar: 'https://i.pravatar.cc/300'
+        avatar: 'https://ui-avatars.com/api/?name=' + payload.newName
       }
-      state.categories.push(newUser)
+      state.users.push(newUser)
       console.log('user added')
     },
     editUser(state, payload) {
