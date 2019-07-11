@@ -10,7 +10,7 @@
           <h3>Add an item</h3>
         </v-card-title>
         <v-card-text>
-          <v-form @submit="handleSubmitItem">
+          <v-form @submit.prevent="handleSubmitItem">
             <v-text-field v-model="newName" autofocus label="Name" clearable></v-text-field>
           </v-form>
         </v-card-text>

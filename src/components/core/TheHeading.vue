@@ -8,11 +8,14 @@
       <v-btn v-if="isLogged === false" flat to="login">
         <span>Login</span>
       </v-btn>
+      <v-avatar v-if="isLogged">
+        <img :src="$store.getters.getCurrentUser.avatar" :alt="$store.getters.getCurrentUser.name" />
+      </v-avatar>
+      <v-btn v-if="$store.getters.getCurrentUser.isAdmin && isLogged === true" flat to="admin">
+        <span>Admin Panel</span>
+      </v-btn>
       <v-btn v-if="isLogged === true" flat to="login" @click="logout">
         <span>Logout</span>
-      </v-btn>
-      <v-btn v-if="isAdmin === true && isLogged === true" flat>
-        <span>Admin Panel</span>
       </v-btn>
     </v-toolbar>
   </div>

@@ -21,12 +21,48 @@ export default new Vuex.Store({
     isLogged: false,
     currentUserId: null,
     users: [
-      { id: 0, name: 'Mario', isAdmin: true, password: '1234' },
-      { id: 1, name: 'Yoshi', isAdmin: false, password: '1234' },
-      { id: 2, name: 'Hermione', isAdmin: false, password: '1234' },
-      { id: 3, name: 'Harry', isAdmin: false, password: '1234' },
-      { id: 4, name: 'Geralt', isAdmin: false, password: '1234' },
-      { id: 5, name: 'Yennefer', isAdmin: false, password: '1234' }
+      {
+        id: 0,
+        name: 'Mario',
+        isAdmin: true,
+        password: '1234',
+        avatar: require('../assets/avatar_mario.jpg')
+      },
+      {
+        id: 1,
+        name: 'Yoshi',
+        isAdmin: false,
+        password: '1234',
+        avatar: require('../assets/avatar_yoshi.png')
+      },
+      {
+        id: 2,
+        name: 'Hermione',
+        isAdmin: false,
+        password: '1234',
+        avatar: require('../assets/avatar_hermione.jpg')
+      },
+      {
+        id: 3,
+        name: 'Harry',
+        isAdmin: false,
+        password: '1234',
+        avatar: require('../assets/avatar_harry.jpg')
+      },
+      {
+        id: 4,
+        name: 'Geralt',
+        isAdmin: false,
+        password: '1234',
+        avatar: require('../assets/avatar_geralt.jpg')
+      },
+      {
+        id: 5,
+        name: 'Yennefer',
+        isAdmin: false,
+        password: '1234',
+        avatar: require('../assets/avatar_yennefer.jpg')
+      }
     ]
   },
   actions: {},
@@ -45,13 +81,46 @@ export default new Vuex.Store({
     logout(state) {
       state.currentUserId = null
       state.isLogged = false
+    },
+    addUser(state, payload) {
+      let newUser = {
+        id: state.users[state.users.length - 1].id + 1,
+        name: payload.newName,
+        password: '1234',
+        isAdmin: false,
+        avatar: 'https://ui-avatars.com/api/?name=' + payload.newName
+      }
+      state.users.push(newUser)
+      console.log('user added')
+    },
+    editUser(state, payload) {
+      let user = state.users.filter(user => user.id == payload.id)
+      user[0].name = payload.name
+      let userItems = state.shoppingList.items.filter(
+        item => item.user == payload.oldName
+      )
+      userItems.forEach(item => (item.user = payload.name))
+      console.log(userItems)
+
+      console.log('user edited')
+    },
+    deleteUser(state, user) {
+      console.log('user deleted')
+      let newArray = state.users.filter(u => u.id !== user.id)
+      state.users = newArray
+      let userItems = state.shoppingList.items.filter(
+        item => item.user == user.name
+      )
+      userItems.forEach(item => (item.user = null))
     }
   },
   getters: {
     getCurrentUser: state => {
       const currentUserId = state.currentUserId
       const users = state.users
-      const currentUser = users.find(user => user.id == currentUserId) || null
+      const currentUser = users.find(user => user.id == currentUserId) || {
+        isAdmin: false
+      }
       return currentUser
     }
   },
