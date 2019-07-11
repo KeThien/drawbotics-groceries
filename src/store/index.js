@@ -104,10 +104,14 @@ export default new Vuex.Store({
 
       console.log('user edited')
     },
-    deleteUser(state, id) {
+    deleteUser(state, user) {
       console.log('user deleted')
-      let newArray = state.users.filter(user => user.id !== id)
+      let newArray = state.users.filter(u => u.id !== user.id)
       state.users = newArray
+      let userItems = state.shoppingList.items.filter(
+        item => item.user == user.name
+      )
+      userItems.forEach(item => (item.user = null))
     }
   },
   getters: {

@@ -25,7 +25,12 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="red darken-1" flat @click="handleDelete">Delete</v-btn>
+          <v-btn
+            v-if="!currentUser.isAdmin"
+            color="red darken-1"
+            flat
+            @click="handleDelete(currentUser)"
+          >Delete</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="teal darken-1" flat @click="dialog = false">Cancel</v-btn>
           <v-btn color="teal darken-1" flat @click="handleEdit(currentUser)">Edit</v-btn>
@@ -66,7 +71,10 @@ export default {
       };
       this.$store.commit("editUser", payload);
     },
-    handleDelete(user) {}
+    handleDelete(user) {
+      this.dialog = false;
+      this.$store.commit("deleteUser", user);
+    }
   }
 };
 </script>
