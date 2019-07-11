@@ -38,7 +38,10 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const publicPages = ['/login']
   const authRequired = !publicPages.includes(to.path)
-  const loggedIn = JSON.parse(localStorage.getItem('my-app'))
+  let loggedIn = JSON.parse(localStorage.getItem('my-app')) || {
+    isLogged: false
+  }
+
   if (authRequired && !loggedIn.isLogged) {
     return next({
       path: '/login'
