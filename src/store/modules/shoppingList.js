@@ -69,30 +69,32 @@ const getters = {
       )
     }
   },
-  getFilteredList: (state, getters, rootState) => catId => {
-    // find the current username with the ID
-
+  getCurrentUser: (state, getters, rootState) => {
     const currentUserId = rootState.currentUserId
     const users = rootState.users
     const currentUser = users.find(user => user.id == currentUserId) || null
-    if (currentUser !== null) {
-      console.log(currentUser.name)
-    }
+    return currentUser
+  },
+  getFilteredList: (state, getters, rootState) => catId => {
+    // find the current username with the ID
 
+    let currentUser = getters.getCurrentUser
     // filtering items with current username and if he is admin
-    if (currentUser.isAdmin) {
-      if (catId === null) {
-        return state.items
+    if (currentUser !== null) {
+      if (currentUser.isAdmin) {
+        if (catId === null) {
+          return state.items
+        } else {
+          return state.items.filter(i => i.categoryID == catId)
+        }
       } else {
-        return state.items.filter(i => i.categoryID == catId)
-      }
-    } else {
-      if (catId === null) {
-        return state.items.filter(i => i.user == currentUser.name)
-      } else {
-        return state.items
-          .filter(i => i.user == currentUser.name)
-          .filter(i => i.categoryID == catId)
+        if (catId === null) {
+          return state.items.filter(i => i.user == currentUser.name)
+        } else {
+          return state.items
+            .filter(i => i.user == currentUser.name)
+            .filter(i => i.categoryID == catId)
+        }
       }
     }
   }

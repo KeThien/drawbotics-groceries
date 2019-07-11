@@ -22,8 +22,7 @@
 export default {
   data() {
     return {
-      isAdmin: false,
-      user: "user"
+      isAdmin: false
     };
   },
   computed: {

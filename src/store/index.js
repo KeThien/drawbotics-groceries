@@ -32,8 +32,6 @@ export default new Vuex.Store({
   actions: {},
   mutations: {
     logUser(state, payload) {
-      payload.username
-      payload.password
       state.users.forEach(user => {
         if (
           user.name === payload.username &&

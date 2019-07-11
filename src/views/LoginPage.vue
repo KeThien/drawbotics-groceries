@@ -30,10 +30,7 @@ import { setTimeout } from "timers";
 import router from "../router";
 
 export default {
-  name: "LoginModal",
-  props: {
-    open: Boolean
-  },
+  name: "LoginPage",
   data() {
     return {
       loading: false,
@@ -56,14 +53,16 @@ export default {
     handleLogin() {
       if (this.username !== "" && this.password !== "") {
         this.loading = true;
-        setTimeout(() => (this.loading = false), 1000);
-        console.log("login submitted");
+        console.log("loging in...");
+        this.$store.commit("logUser", {
+          username: this.username,
+          password: this.password
+        });
+        setTimeout(() => {
+          this.loading = false;
+          router.push({ path: "/" });
+        }, 1000);
       }
-      this.$store.commit("logUser", {
-        username: this.username,
-        password: this.password
-      });
-      router.push({ path: "/" });
     }
   }
 };
