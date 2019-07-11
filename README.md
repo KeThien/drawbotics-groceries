@@ -2,10 +2,27 @@
 
 This is a Pet Project recruitment for Drawbotics. 
 
-The goal is to provide a simple but complete app for managing groceries of a company. Basically, a list that everyone in the company can contribute to or check.
+The goal is to provide a simple but complete app for managing groceries of a company. Basically, a list that everyone in the company can contribute to or check.  
 
-[**DEMO**](https://quirky-saha-ab0f86.netlify.com/#/) build in [Netlify](https://www.netlify.com/)
+The fake database is used with Vuex store for the purpose of this demo. That's why the password is not secure for user.
+There is also few items and categories to play with.
 
+All password are '1234'  
+Mario is the admin and the rest are simple users
+
+[**DEMO**](https://quirky-saha-ab0f86.netlify.com/#/) build in [Netlify](https://www.netlify.com/) 
+
+Fake users to play with the demo:
+```
+  users: [
+      { id: 0, name: 'Mario', isAdmin: true, password: '1234' },
+      { id: 1, name: 'Yoshi', isAdmin: false, password: '1234' },
+      { id: 2, name: 'Hermione', isAdmin: false, password: '1234' },
+      { id: 3, name: 'Harry', isAdmin: false, password: '1234' },
+      { id: 4, name: 'Geralt', isAdmin: false, password: '1234' },
+      { id: 5, name: 'Yennefer', isAdmin: false, password: '1234' }
+    ]
+```
 
 
 ## Table of contents  <!-- omit in toc -->
@@ -58,6 +75,7 @@ The main module where you can:
 - Add new items to the shopping list
 - Edit items from the shopping list
 - Delete items from the shopping list
+- Now Show only items for logged user (or all for the admin)
 
 ### 2. Shopping List Category Component
 - The app has categories for items
@@ -97,7 +115,7 @@ const getters = {
 - The app suggests recipes based on your shopping list
 
 ## ⌛ Features to add for a full-flegded app
-- Logins
+- ~~Logins~~
 - Create users
 - Have a admin panel to create user
 - Have user panel / profile
@@ -112,3 +130,4 @@ On github, I made branches per new features. So I can code and try without worry
 
 ## 🎯 Challenges / Difficulties
 I didn't know how to use Vuex and is store before this project. So I'm very happy to have learn it from scratch and by typing the code.
+Also learn about the basic of LocalStorage and play with the router for the auth feature.
